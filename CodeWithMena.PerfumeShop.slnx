@@ -1,1 +1,9 @@
-<Solution />
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Collect Project/">
+    <Project Path="CodeWithMena.PerfumeShop.BLL/CodeWithMena.PerfumeShop.BLL.csproj" Id="aab10cdf-c7b5-4ea3-8f2a-06d669eb497a" />
+    <Project Path="CodeWithMena.PerfumeShop.DAL/CodeWithMena.PerfumeShop.DAL.csproj" Id="7e2e0b60-df81-4960-acb5-3aa05e809ce1" />
+    <Project Path="CodeWithMena.PerfumeShop.PL/CodeWithMena.PerfumeShop.PL.csproj" Id="e1ddcc34-16cb-4bda-ac55-22de6d58f4f0" />
+  </Folder>
+  <Folder Name="/test/" />
+</Solution>
