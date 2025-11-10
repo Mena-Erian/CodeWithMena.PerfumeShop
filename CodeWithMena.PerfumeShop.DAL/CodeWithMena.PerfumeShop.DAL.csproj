@@ -17,7 +17,6 @@
   <ItemGroup>
     <Folder Include="Persistence\Data\DataSeeds\" />
     <Folder Include="Persistence\Data\Migrations\" />
-    <Folder Include="Persistence\Repositories\" />
   </ItemGroup>
 
 </Project>
