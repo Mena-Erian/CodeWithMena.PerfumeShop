@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CodeWithMena.PerfumeShop.DAL.Entities
 {
-    internal class PerfumeOil : BasePerfume<PerfumeOil, Guid>
+    public class PerfumeOil : BasePerfume<PerfumeOil, Guid>
     {
         
     }

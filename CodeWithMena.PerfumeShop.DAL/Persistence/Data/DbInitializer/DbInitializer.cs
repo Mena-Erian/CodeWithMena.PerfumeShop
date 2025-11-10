@@ -11,7 +11,7 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.DbInitializer
         public void Initialize()
         {
             if (dbContext.Database.GetPendingMigrations().Any())
-                dbContext.Database.Migrate(); // Update-Database
+                dbContext.Database.Migrate(); // UpdateAsync-Database
         }
 
         public void SeedData()

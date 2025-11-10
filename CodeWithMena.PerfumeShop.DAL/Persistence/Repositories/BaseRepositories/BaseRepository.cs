@@ -35,7 +35,7 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Repositories.BaseRepositories
         public virtual async Task<TEntity?> GetByIdAsync(TKey id)
             => await dbSet.FindAsync(id);
 
-        public virtual async Task<int> Update(TEntity entity)
+        public virtual async Task<int> UpdateAsync(TEntity entity)
         {
             dbSet.Update(entity);
             return await dbContext.SaveChangesAsync();

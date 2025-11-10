@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CodeWithMena.PerfumeShop.DAL.Common.Repositories
 {
-    internal interface IPerfumeOilRepositories : IBasePerfumeRepository<PerfumeOil, Guid>
+    public interface IPerfumeOilRepositories : IBasePerfumeRepository<PerfumeOil, Guid>
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CodeWithMena.PerfumeShop.DAL.Common.Repositories.Base
 {
-    internal interface IBaseRepository<TEntity, TKey>
+    public interface IBaseRepository<TEntity, TKey>
         where TEntity : BaseEntity<TKey>
         where TKey : IEquatable<TKey>
     {
@@ -14,7 +14,7 @@ namespace CodeWithMena.PerfumeShop.DAL.Common.Repositories.Base
         Task<TEntity?> GetByIdAsync(TKey id);
 
         Task<int> AddAsync(TEntity entity);
-        Task<int> Update(TEntity entity);
+        Task<int> UpdateAsync(TEntity entity);
         Task<int> DeleteByIdAsync(TKey id);
     }
 }
