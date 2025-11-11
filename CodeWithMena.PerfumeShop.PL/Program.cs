@@ -1,4 +1,5 @@
 using CodeWithMena.PerfumeShop.DAL;
+using CodeWithMena.PerfumeShop.BLL;
 using System.Threading.Tasks;
 
 namespace CodeWithMena.PerfumeShop.PL
@@ -14,6 +15,8 @@ namespace CodeWithMena.PerfumeShop.PL
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddPersistenceServices(builder.Configuration);
+            builder.Services.AddApplicationServices();
+
             #endregion
 
             var app = builder.Build();

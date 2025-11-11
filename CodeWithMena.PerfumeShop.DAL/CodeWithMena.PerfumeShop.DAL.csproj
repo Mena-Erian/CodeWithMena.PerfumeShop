@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Persistence\Data\DataSeeds\" />
     <Folder Include="Persistence\Data\Migrations\" />
   </ItemGroup>
 
