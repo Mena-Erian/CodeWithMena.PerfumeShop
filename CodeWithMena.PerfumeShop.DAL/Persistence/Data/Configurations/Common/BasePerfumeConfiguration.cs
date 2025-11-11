@@ -26,6 +26,7 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Configurations.Common
                 .IsRequired()
                 .HasMaxLength(100);
 
+
             builder.Property(p => p.Description)
                 .IsRequired(false)
                 .HasMaxLength(500);
@@ -37,11 +38,11 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Configurations.Common
                 fregType => Enum.Parse<FragranceType>(fregType)
                 ).HasMaxLength(100);
 
-            builder.Property(p => p.FragrancyFamily)
+            builder.Property(p => p.FragranceFamily)
                 .IsRequired(false)
                 .HasConversion(
                     fregFamily => fregFamily.ToString(),
-                    fregFamily => Enum.Parse<FragrancyFamily>(fregFamily)
+                    fregFamily => Enum.Parse<FragranceFamily>(fregFamily)
                 ).HasMaxLength(100);
 
             builder.Property(p => p.RatingOfSale)

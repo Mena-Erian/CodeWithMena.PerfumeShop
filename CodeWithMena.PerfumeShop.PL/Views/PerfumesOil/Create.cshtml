@@ -1,0 +1,23 @@
+﻿@using CodeWithMena.PerfumeShop.PL.Controllers
+@using CodeWithMena.PerfumeShop.PL.ViewModels.Perfumes
+@model PerfumeOilCreateDto
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center mb-5">Create New Perfume, Dr Kerolos</h1>
+
+<div class="container bg-body-secondary ms-auto me-auto border-1 border-white rounded-3 shadow-lg">
+	<form class="bg-info-subtle" asp-action="@nameof(PerfumesOilController.Create)">
+		<div asp-validation-summary="All" class="text-danger"></div>
+
+		<div asp-for="" class="form-floating mb-3">
+			<input  type="text" class="form-control" placeholder="Danhal Desier" />
+			<label asp-for="Name">
+				Perfume Name
+				<span class="text-danger">*</span>
+			</label>
+		</div>
+	</form>
+</div>

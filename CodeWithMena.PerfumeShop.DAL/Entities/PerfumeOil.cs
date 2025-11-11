@@ -8,6 +8,6 @@ namespace CodeWithMena.PerfumeShop.DAL.Entities
 {
     public class PerfumeOil : BasePerfume<PerfumeOil, Guid>
     {
-        
+        public decimal? AvailableQuantityPerGram { get; set; }
     }
 }

@@ -9,6 +9,8 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data
 {
     internal class PerfumesShopDbContext(DbContextOptions<PerfumesShopDbContext> options) : DbContext(options)
     {
+
+       
         public DbSet<PerfumeOil> PerfumeOils { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -16,6 +18,6 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-
+        
     }
 }

@@ -12,7 +12,7 @@ namespace CodeWithMena.PerfumeShop.DAL.Common.Entities
         public required string Name { get; set; }
         public string? Description { get; set; }
         public FragranceType FragranceType { get; set; }
-        public FragrancyFamily? FragrancyFamily { get; set; }
+        public FragranceFamily? FragranceFamily { get; set; }
         public int RatingOfSale { get; set; }
         public BasePerfumePrice? PerfumePrice { get; set; }
     }

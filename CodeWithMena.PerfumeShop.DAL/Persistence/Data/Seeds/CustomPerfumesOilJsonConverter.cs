@@ -11,7 +11,7 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Seeds
         public required string Name { get; set; }
         public string? Description { get; set; }
         public string FragranceType { get; set; }
-        public string? FragrancyFamily { get; set; }
+        public string? FragranceFamily { get; set; }
         public int RatingOfSale { get; set; }
         public decimal? SupplierPrice { get; set; }
         public decimal? SalePrice { get; set; }
@@ -40,7 +40,7 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Seeds
                     LastModifiedBy = p.LastModifiedBy,
                     Name = GetUniquePerfumeName(p, perfumesDto),
                     Description = p.Description,
-                    FragrancyFamily = p.FragrancyFamily is not null ? Enum.Parse<FragrancyFamily>(p.FragrancyFamily) : null,
+                    FragranceFamily = p.FragranceFamily is not null ? Enum.Parse<FragranceFamily>(p.FragranceFamily) : null,
                     FragranceType = GetFragranceType(p),
                     PerfumePrice = new()
                     { SupplierPrice = p.SupplierPrice, SalePrice = p.SalePrice },

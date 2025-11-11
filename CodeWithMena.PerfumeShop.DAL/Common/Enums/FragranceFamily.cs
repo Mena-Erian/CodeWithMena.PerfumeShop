@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CodeWithMena.PerfumeShop.DAL.Common.Enums
 {
-    public enum FragrancyFamily
+    public enum FragranceFamily
     {
         Sugery = 1,
         Floral = 2,

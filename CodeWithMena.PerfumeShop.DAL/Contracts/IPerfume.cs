@@ -10,6 +10,6 @@ namespace CodeWithMena.PerfumeShop.DAL.Contracts
         public string Name { get; set; }
         public string? Description { get; set; }
         public FragranceType FragranceType { get; set; }
-        public FragrancyFamily? FragrancyFamily { get; set; }
+        public FragranceFamily? FragranceFamily { get; set; }
     }
 }

@@ -13,6 +13,10 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Configurations.PerfumeOi
         public override void Configure(EntityTypeBuilder<PerfumeOil> builder)
         {
             base.Configure(builder);
+
+            builder.Property(p => p.AvailableQuantityPerGram)
+                .IsRequired(false);
+
         }
     }
 }

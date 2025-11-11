@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
 {
     [DbContext(typeof(PerfumesShopDbContext))]
-    [Migration("20251110204301_CreateDBAndPerfumeOilsTable")]
-    partial class CreateDBAndPerfumeOilsTable
+    [Migration("20251111210807_CreateDataBaseInfrastructre")]
+    partial class CreateDataBaseInfrastructre
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,9 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal?>("AvailableQuantityPerGram")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
@@ -44,12 +47,12 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("FragranceType")
-                        .IsRequired()
+                    b.Property<string>("FragranceFamily")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("FragrancyFamily")
+                    b.Property<string>("FragranceType")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 

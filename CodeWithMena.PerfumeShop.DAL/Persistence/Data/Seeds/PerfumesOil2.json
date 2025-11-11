@@ -8,7 +8,7 @@
     "Name": "Midnight Bloom",
     "Description": "A captivating blend of floral notes, evoking a sense of wonder.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 22.500,
     "SalePrice": 64.990
@@ -22,7 +22,7 @@
     "Name": "Midnight Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 9,
     "SupplierPrice": 45.000,
     "SalePrice": 139.500
@@ -36,7 +36,7 @@
     "Name": "Midnight Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 5,
     "SupplierPrice": 18.200,
     "SalePrice": 49.900
@@ -50,7 +50,7 @@
     "Name": "Midnight Jasmine",
     "Description": "Experience the timeless allure of Midnight Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 7,
     "SupplierPrice": 21.000,
     "SalePrice": 59.800
@@ -64,7 +64,7 @@
     "Name": "Midnight Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 9,
     "SupplierPrice": 38.750,
     "SalePrice": 112.500
@@ -78,7 +78,7 @@
     "Name": "Midnight Musk",
     "Description": "A comforting and warm aroma, like a soft embrace.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 8,
     "SupplierPrice": 25.000,
     "SalePrice": 72.000
@@ -92,7 +92,7 @@
     "Name": "Midnight Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 6,
     "SupplierPrice": 19.800,
     "SalePrice": 55.000
@@ -106,7 +106,7 @@
     "Name": "Midnight Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "East",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 7,
     "SupplierPrice": 30.100,
     "SalePrice": 89.000
@@ -120,7 +120,7 @@
     "Name": "Midnight Elixir",
     "Description": "Pure mystery, captured in a bottle. A scent to define your moments.",
     "FragranceType": "Other",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 50.000,
     "SalePrice": 155.000
@@ -134,7 +134,7 @@
     "Name": "Midnight Garden",
     "Description": "A captivating blend of floral notes, evoking a sense of wonder.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 23.000,
     "SalePrice": 65.500
@@ -148,7 +148,7 @@
     "Name": "Golden Bloom",
     "Description": "Fresh, vibrant, and full of life. Perfect for daywear or a sunny escape.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Sugery",
+    "FragranceFamily": "Sugery",
     "RatingOfSale": 9,
     "SupplierPrice": 20.000,
     "SalePrice": 58.000
@@ -162,7 +162,7 @@
     "Name": "Golden Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 55.000,
     "SalePrice": 169.000
@@ -176,7 +176,7 @@
     "Name": "Golden Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 7,
     "SupplierPrice": 24.500,
     "SalePrice": 69.000
@@ -190,7 +190,7 @@
     "Name": "Golden Jasmine",
     "Description": "Experience the timeless allure of Golden Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 23.000,
     "SalePrice": 65.000
@@ -204,7 +204,7 @@
     "Name": "Golden Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 9,
     "SupplierPrice": 42.000,
     "SalePrice": 120.000
@@ -218,7 +218,7 @@
     "Name": "Golden Musk",
     "Description": "A comforting and warm aroma, like a golden embrace.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 9,
     "SupplierPrice": 28.000,
     "SalePrice": 79.000
@@ -232,7 +232,7 @@
     "Name": "Golden Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 6,
     "SupplierPrice": 21.500,
     "SalePrice": 59.000
@@ -246,7 +246,7 @@
     "Name": "Golden Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "East",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 7,
     "SupplierPrice": 33.000,
     "SalePrice": 95.000
@@ -260,7 +260,7 @@
     "Name": "Golden Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "East",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 7,
     "SupplierPrice": 33.000,
     "SalePrice": 95.000
@@ -274,7 +274,7 @@
     "Name": "Golden Garden",
     "Description": "A captivating blend of fruity notes, evoking a sense of joy.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Sugery",
+    "FragranceFamily": "Sugery",
     "RatingOfSale": 8,
     "SupplierPrice": 25.000,
     "SalePrice": 72.500
@@ -288,7 +288,7 @@
     "Name": "Ethereal Bloom",
     "Description": "Fresh, vibrant, and full of life. Perfect for daywear or a sunny escape.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 8,
     "SupplierPrice": 19.500,
     "SalePrice": 55.000
@@ -302,7 +302,7 @@
     "Name": "Ethereal Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 50.000,
     "SalePrice": 155.000
@@ -316,7 +316,7 @@
     "Name": "Ethereal Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 7,
     "SupplierPrice": 23.500,
     "SalePrice": 68.000
@@ -330,7 +330,7 @@
     "Name": "Ethereal Jasmine",
     "Description": "Experience the timeless allure of Ethereal Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 22.000,
     "SalePrice": 62.000
@@ -344,7 +344,7 @@
     "Name": "Ethereal Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 9,
     "SupplierPrice": 40.000,
     "SalePrice": 115.000
@@ -358,7 +358,7 @@
     "Name": "Ethereal Musk",
     "Description": "A comforting and warm aroma, like an ethereal embrace.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 9,
     "SupplierPrice": 27.000,
     "SalePrice": 78.000
@@ -372,7 +372,7 @@
     "Name": "Ethereal Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 7,
     "SupplierPrice": 20.500,
     "SalePrice": 58.000
@@ -386,7 +386,7 @@
     "Name": "Ethereal Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 8,
     "SupplierPrice": 31.500,
     "SalePrice": 90.000
@@ -400,7 +400,7 @@
     "Name": "Ethereal Elixir",
     "Description": "Pure light, captured in a bottle. A scent to define your moments.",
     "FragranceType": "Other",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 10,
     "SupplierPrice": 54.000,
     "SalePrice": 165.000
@@ -414,7 +414,7 @@
     "Name": "Ethereal Garden",
     "Description": "A captivating blend of fresh notes, evoking a sense of wonder.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 9,
     "SupplierPrice": 24.000,
     "SalePrice": 69.000
@@ -428,7 +428,7 @@
     "Name": "Velvet Bloom",
     "Description": "A captivating blend of floral notes, evoking a sense of luxury.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 26.000,
     "SalePrice": 75.000
@@ -442,7 +442,7 @@
     "Name": "Velvet Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 60.000,
     "SalePrice": 185.000
@@ -456,7 +456,7 @@
     "Name": "Velvet Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 9,
     "SupplierPrice": 35.000,
     "SalePrice": 100.000
@@ -470,7 +470,7 @@
     "Name": "Velvet Jasmine",
     "Description": "Experience the timeless allure of Velvet Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 25.500,
     "SalePrice": 72.000
@@ -484,7 +484,7 @@
     "Name": "Velvet Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 10,
     "SupplierPrice": 44.000,
     "SalePrice": 129.000
@@ -498,7 +498,7 @@
     "Name": "Velvet Musk",
     "Description": "A comforting and warm aroma, like a velvet embrace.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 9,
     "SupplierPrice": 30.000,
     "SalePrice": 88.000
@@ -512,7 +512,7 @@
     "Name": "Velvet Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 7,
     "SupplierPrice": 23.000,
     "SalePrice": 65.000
@@ -526,7 +526,7 @@
     "Name": "Velvet Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 8,
     "SupplierPrice": 34.500,
     "SalePrice": 99.000
@@ -540,7 +540,7 @@
     "Name": "Velvet Elixir",
     "Description": "Pure luxury, captured in a bottle. A scent to define your moments.",
     "FragranceType": "Other",
-    "FragrancyFamily": "Sugery",
+    "FragranceFamily": "Sugery",
     "RatingOfSale": 10,
     "SupplierPrice": 58.000,
     "SalePrice": 175.000
@@ -554,7 +554,7 @@
     "Name": "Velvet Garden",
     "Description": "A captivating blend of rich notes, evoking a sense of opulence.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 9,
     "SupplierPrice": 27.000,
     "SalePrice": 78.000
@@ -568,7 +568,7 @@
     "Name": "Amber Bloom",
     "Description": "Fresh, vibrant, and full of life. Perfect for daywear or a sunny escape.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Sugery",
+    "FragranceFamily": "Sugery",
     "RatingOfSale": 9,
     "SupplierPrice": 21.000,
     "SalePrice": 60.000
@@ -582,7 +582,7 @@
     "Name": "Amber Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 65.000,
     "SalePrice": 199.000
@@ -596,7 +596,7 @@
     "Name": "Amber Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 27.000,
     "SalePrice": 78.000
@@ -610,7 +610,7 @@
     "Name": "Amber Jasmine",
     "Description": "Experience the timeless allure of Amber Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 26.000,
     "SalePrice": 75.000
@@ -624,7 +624,7 @@
     "Name": "Amber Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 9,
     "SupplierPrice": 46.000,
     "SalePrice": 135.000
@@ -638,7 +638,7 @@
     "Name": "Amber Musk",
     "Description": "A comforting and warm aroma, like an amber embrace.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 32.000,
     "SalePrice": 92.000
@@ -652,7 +652,7 @@
     "Name": "Amber Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 7,
     "SupplierPrice": 24.500,
     "SalePrice": 69.000
@@ -666,7 +666,7 @@
     "Name": "Amber Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 9,
     "SupplierPrice": 36.000,
     "SalePrice": 105.000
@@ -680,7 +680,7 @@
     "Name": "Amber Elixir",
     "Description": "Pure warmth, captured in a bottle. A scent to define your moments.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 60.000,
     "SalePrice": 185.000
@@ -694,7 +694,7 @@
     "Name": "Amber Garden",
     "Description": "A captivating blend of warm notes, evoking a sense of comfort.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Sugery",
+    "FragranceFamily": "Sugery",
     "RatingOfSale": 9,
     "SupplierPrice": 28.000,
     "SalePrice": 80.000
@@ -708,7 +708,7 @@
     "Name": "Crimson Bloom",
     "Description": "A captivating blend of spicy notes, evoking a sense of passion.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 9,
     "SupplierPrice": 28.000,
     "SalePrice": 79.000
@@ -722,7 +722,7 @@
     "Name": "Crimson Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 62.000,
     "SalePrice": 190.000
@@ -736,7 +736,7 @@
     "Name": "Crimson Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 9,
     "SupplierPrice": 36.000,
     "SalePrice": 105.000
@@ -750,7 +750,7 @@
     "Name": "Crimson Jasmine",
     "Description": "Experience the timeless allure of Crimson Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 27.500,
     "SalePrice": 78.000
@@ -764,7 +764,7 @@
     "Name": "Crimson Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 10,
     "SupplierPrice": 48.000,
     "SalePrice": 140.000
@@ -778,7 +778,7 @@
     "Name": "Crimson Musk",
     "Description": "A comforting and warm aroma, like a crimson embrace.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 9,
     "SupplierPrice": 34.000,
     "SalePrice": 98.000
@@ -792,7 +792,7 @@
     "Name": "Crimson Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 7,
     "SupplierPrice": 26.000,
     "SalePrice": 75.000
@@ -806,7 +806,7 @@
     "Name": "Crimson Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "East",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 9,
     "SupplierPrice": 38.000,
     "SalePrice": 110.000
@@ -820,7 +820,7 @@
     "Name": "Crimson Elixir",
     "Description": "Pure passion, captured in a bottle. A scent to define your moments.",
     "FragranceType": "Other",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 10,
     "SupplierPrice": 62.000,
     "SalePrice": 190.000
@@ -834,7 +834,7 @@
     "Name": "Crimson Garden",
     "Description": "A captivating blend of spicy notes, evoking a sense of fire.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 9,
     "SupplierPrice": 29.000,
     "SalePrice": 85.000
@@ -848,7 +848,7 @@
     "Name": "Azure Bloom",
     "Description": "Fresh, vibrant, and full of life. Perfect for daywear or a sunny escape.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 9,
     "SupplierPrice": 22.000,
     "SalePrice": 62.000
@@ -862,7 +862,7 @@
     "Name": "Azure Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 58.000,
     "SalePrice": 175.000
@@ -876,7 +876,7 @@
     "Name": "Azure Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 25.000,
     "SalePrice": 70.000
@@ -890,7 +890,7 @@
     "Name": "Azure Jasmine",
     "Description": "Experience the timeless allure of Azure Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 7,
     "SupplierPrice": 24.000,
     "SalePrice": 68.000
@@ -904,7 +904,7 @@
     "Name": "Azure Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 9,
     "SupplierPrice": 43.000,
     "SalePrice": 125.000
@@ -918,7 +918,7 @@
     "Name": "Azure Musk",
     "Description": "A comforting and warm aroma, like an azure embrace.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 9,
     "SupplierPrice": 29.000,
     "SalePrice": 82.000
@@ -932,7 +932,7 @@
     "Name": "Azure Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 7,
     "SupplierPrice": 22.500,
     "SalePrice": 63.000
@@ -946,7 +946,7 @@
     "Name": "Azure Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 8,
     "SupplierPrice": 33.500,
     "SalePrice": 95.000
@@ -960,7 +960,7 @@
     "Name": "Azure Elixir",
     "Description": "Pure ocean, captured in a bottle. A scent to define your moments.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 10,
     "SupplierPrice": 56.000,
     "SalePrice": 169.000
@@ -974,7 +974,7 @@
     "Name": "Azure Garden",
     "Description": "A captivating blend of fresh notes, evoking a sense of the sea.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 9,
     "SupplierPrice": 26.500,
     "SalePrice": 76.000
@@ -988,7 +988,7 @@
     "Name": "Mystic Bloom",
     "Description": "Fresh, vibrant, and full of life. Perfect for daywear or a sunny escape.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 23.000,
     "SalePrice": 65.000
@@ -1002,7 +1002,7 @@
     "Name": "Mystic Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 68.000,
     "SalePrice": 210.000
@@ -1016,7 +1016,7 @@
     "Name": "Mystic Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 9,
     "SupplierPrice": 28.000,
     "SalePrice": 80.000
@@ -1030,7 +1030,7 @@
     "Name": "Mystic Jasmine",
     "Description": "Experience the timeless allure of Mystic Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 27.000,
     "SalePrice": 78.000
@@ -1044,7 +1044,7 @@
     "Name": "Mystic Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 9,
     "SupplierPrice": 47.000,
     "SalePrice": 138.000
@@ -1058,7 +1058,7 @@
     "Name": "Mystic Musk",
     "Description": "A comforting and warm aroma, like a mystic embrace.",
     "FragranceType": "Other",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 9,
     "SupplierPrice": 33.000,
     "SalePrice": 95.000
@@ -1072,7 +1072,7 @@
     "Name": "Mystic Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 7,
     "SupplierPrice": 24.000,
     "SalePrice": 69.000
@@ -1086,7 +1086,7 @@
     "Name": "Mystic Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 8,
     "SupplierPrice": 37.000,
     "SalePrice": 108.000
@@ -1100,7 +1100,7 @@
     "Name": "Mystic Elixir",
     "Description": "Pure enigma, captured in a bottle. A scent to define your moments.",
     "FragranceType": "Other",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 10,
     "SupplierPrice": 64.000,
     "SalePrice": 195.000
@@ -1114,7 +1114,7 @@
     "Name": "Mystic Garden",
     "Description": "A captivating blend of unknown notes, evoking a sense of wonder.",
     "FragranceType": "Other",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 9,
     "SupplierPrice": 29.500,
     "SalePrice": 85.000
@@ -1128,7 +1128,7 @@
     "Name": "Luminous Bloom",
     "Description": "Fresh, vibrant, and full of life. Perfect for daywear or a sunny escape.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Citrus",
+    "FragranceFamily": "Citrus",
     "RatingOfSale": 9,
     "SupplierPrice": 24.000,
     "SalePrice": 69.000
@@ -1142,7 +1142,7 @@
     "Name": "Luminous Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 60.000,
     "SalePrice": 185.000
@@ -1156,7 +1156,7 @@
     "Name": "Luminous Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 29.000,
     "SalePrice": 82.000
@@ -1170,7 +1170,7 @@
     "Name": "Luminous Jasmine",
     "Description": "Experience the timeless allure of Luminous Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 28.000,
     "SalePrice": 79.000
@@ -1184,7 +1184,7 @@
     "Name": "Luminous Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 9,
     "SupplierPrice": 49.000,
     "SalePrice": 145.000
@@ -1198,7 +1198,7 @@
     "Name": "Luminous Musk",
     "Description": "A comforting and warm aroma, like a luminous embrace.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 9,
     "SupplierPrice": 35.000,
     "SalePrice": 100.000
@@ -1212,7 +1212,7 @@
     "Name": "Luminous Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Citrus",
+    "FragranceFamily": "Citrus",
     "RatingOfSale": 7,
     "SupplierPrice": 25.000,
     "SalePrice": 70.000
@@ -1226,7 +1226,7 @@
     "Name": "Luminous Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 8,
     "SupplierPrice": 39.000,
     "SalePrice": 115.000
@@ -1240,7 +1240,7 @@
     "Name": "Luminous Elixir",
     "Description": "Pure light, captured in a bottle. A scent to define your moments.",
     "FragranceType": "Other",
-    "FragrancyFamily": "Citrus",
+    "FragranceFamily": "Citrus",
     "RatingOfSale": 10,
     "SupplierPrice": 66.000,
     "SalePrice": 200.000
@@ -1254,7 +1254,7 @@
     "Name": "Luminous Garden",
     "Description": "A captivating blend of bright notes, evoking a sense of joy.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Citrus",
+    "FragranceFamily": "Citrus",
     "RatingOfSale": 9,
     "SupplierPrice": 30.000,
     "SalePrice": 88.000
@@ -1268,7 +1268,7 @@
     "Name": "Secret Bloom",
     "Description": "A captivating blend of hidden notes, evoking a sense of mystery.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 9,
     "SupplierPrice": 27.000,
     "SalePrice": 78.000
@@ -1282,7 +1282,7 @@
     "Name": "Secret Oud",
     "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
     "FragranceType": "East",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 10,
     "SupplierPrice": 70.000,
     "SalePrice": 220.000
@@ -1296,7 +1296,7 @@
     "Name": "Secret Rose",
     "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 9,
     "SupplierPrice": 38.000,
     "SalePrice": 110.000
@@ -1310,7 +1310,7 @@
     "Name": "Secret Jasmine",
     "Description": "Experience the timeless allure of Secret Jasmine, a classic revisited.",
     "FragranceType": "Female",
-    "FragrancyFamily": "Floral",
+    "FragranceFamily": "Floral",
     "RatingOfSale": 8,
     "SupplierPrice": 29.000,
     "SalePrice": 85.000
@@ -1324,7 +1324,7 @@
     "Name": "Secret Santal",
     "Description": "Earthy and grounding, connecting you to the heart of the forest.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 10,
     "SupplierPrice": 50.000,
     "SalePrice": 150.000
@@ -1338,7 +1338,7 @@
     "Name": "Secret Musk",
     "Description": "A comforting and warm aroma, like a secret embrace.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Oriental",
+    "FragranceFamily": "Oriental",
     "RatingOfSale": 9,
     "SupplierPrice": 36.000,
     "SalePrice": 105.000
@@ -1352,7 +1352,7 @@
     "Name": "Secret Vetiver",
     "Description": "Bold and adventurous, this fragrance is for the modern explorer.",
     "FragranceType": "Male",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 8,
     "SupplierPrice": 27.000,
     "SalePrice": 78.000
@@ -1366,7 +1366,7 @@
     "Name": "Secret Patchouli",
     "Description": "An exquisite elixir of rare botanicals and precious woods.",
     "FragranceType": "East",
-    "FragrancyFamily": "Woody",
+    "FragranceFamily": "Woody",
     "RatingOfSale": 9,
     "SupplierPrice": 40.000,
     "SalePrice": 118.000
@@ -1380,7 +1380,7 @@
     "Name": "Secret Elixir",
     "Description": "Pure mystery, captured in a bottle. A scent to define your moments.",
     "FragranceType": "Other",
-    "FragrancyFamily": "Other",
+    "FragranceFamily": "Other",
     "RatingOfSale": 10,
     "SupplierPrice": 68.000,
     "SalePrice": 210.000
@@ -1394,7 +1394,7 @@
     "Name": "Secret Garden",
     "Description": "A captivating blend of hidden notes, evoking a sense of wonder.",
     "FragranceType": "Male and Female",
-    "FragrancyFamily": "Fresh",
+    "FragranceFamily": "Fresh",
     "RatingOfSale": 9,
     "SupplierPrice": 31.000,
     "SalePrice": 89.900
