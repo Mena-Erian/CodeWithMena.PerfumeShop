@@ -44,7 +44,7 @@ namespace CodeWithMena.PerfumeShop.PL
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
+                pattern: "{controller=PerfumesOil}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
             #endregion

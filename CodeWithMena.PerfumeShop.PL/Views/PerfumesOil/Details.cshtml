@@ -1,0 +1,197 @@
+﻿@using CodeWithMena.PerfumeShop.DAL.Entities
+@model PerfumeOil
+
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="details-container">
+    <!-- Header Section -->
+    <div class="details-header">
+        <div class="details-header-content">
+            <div class="header-left">
+                <a  class="btn-back" asp-controller="PerfumesOil" asp-action="Index">
+                    <span class="back-icon">←</span>
+                    <span class="back-text">Back to List</span>
+                </a>
+                <h1 class="details-title">@Model.Name</h1>
+            </div>
+            <div class="header-actions">
+                <a class="btn-action btn-edit" asp-controller="PerfumesOil" asp-action="Edit" asp-route-id="@Model.Id">
+                    <span class="action-icon">✎</span>
+                    <span class="action-text">Edit</span>
+                </a>
+                <a  class="btn-action btn-delete" asp-controller="PerfumesOil" asp-action="Delete" asp-route-id="@Model.Id">
+                    <span class="action-icon">🗑</span>
+                    <span class="action-text">Delete</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="details-grid">
+        <!-- Basic Information Card -->
+        <div class="details-card">
+            <div class="card-header-custom">
+                <h3 class="card-title-custom">Basic Information</h3>
+                <span class="card-icon">📋</span>
+            </div>
+            <div class="card-body-custom">
+                <div class="info-row">
+                    <span class="info-label-custom">ID</span>
+                    <span class="info-value-custom">@Model.Id</span>
+                </div>
+                <div class="divider-custom"></div>
+                <div class="info-row">
+                    <span class="info-label-custom">Name</span>
+                    <span class="info-value-custom info-highlight">@Model.Name</span>
+                </div>
+                <div class="divider-custom"></div>
+                <div class="info-row">
+                    <span class="info-label-custom">Description</span>
+                    <span class="info-value-custom">@(Model.Description ?? "N/A")</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fragrance Details Card -->
+        <div class="details-card">
+            <div class="card-header-custom header-purple">
+                <h3 class="card-title-custom">Fragrance Details</h3>
+                <span class="card-icon">🌸</span>
+            </div>
+            <div class="card-body-custom">
+                <div class="info-row">
+                    <span class="info-label-custom">Fragrance Type</span>
+                    <span class="badge-custom badge-info">@Model.FragranceType</span>
+                </div>
+                <div class="divider-custom"></div>
+                <div class="info-row">
+                    <span class="info-label-custom">Fragrance Family</span>
+                    <span class="badge-custom badge-primary">@(Model.FragranceFamily?.ToString() ?? "N/A")</span>
+                </div>
+                <div class="divider-custom"></div>
+                <div class="info-row">
+                    <span class="info-label-custom">Rating of Sale</span>
+                    <span class="badge-custom badge-warning">@Model.RatingOfSale / 10</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Information Card -->
+        <div class="details-card">
+            <div class="card-header-custom header-green">
+                <h3 class="card-title-custom">Pricing Information</h3>
+                <span class="card-icon">💰</span>
+            </div>
+            <div class="card-body-custom">
+                @if (Model.PerfumePrice != null)
+                {
+                    <div class="info-row">
+                        <span class="info-label-custom">Supplier Price</span>
+                        <span class="info-value-custom price-supplier">
+                            @(Model.PerfumePrice.SupplierPrice?.ToString("C") ?? "N/A")
+                        </span>
+                    </div>
+                    <div class="divider-custom"></div>
+                    <div class="info-row">
+                        <span class="info-label-custom">Sale Price</span>
+                        <span class="info-value-custom price-sale">
+                            @(Model.PerfumePrice.SalePrice?.ToString("C") ?? "N/A")
+                        </span>
+                    </div>
+                    <div class="divider-custom"></div>
+                    <div class="info-row">
+                        <span class="info-label-custom">Profit Margin</span>
+                        <span class="info-value-custom price-profit">
+                            @(Model.PerfumePrice.GetProfitMargin()?.ToString("C") ?? "N/A")
+                        </span>
+                    </div>
+                }
+                else
+                {
+                    <p class="no-data-text">No pricing information available</p>
+                }
+            </div>
+        </div>
+
+        <!-- Inventory Card -->
+        <div class="details-card">
+            <div class="card-header-custom header-orange">
+                <h3 class="card-title-custom">Inventory</h3>
+                <span class="card-icon">📦</span>
+            </div>
+            <div class="card-body-custom">
+                <div class="inventory-display">
+                    <span class="inventory-label">Available Quantity</span>
+                    <span class="inventory-value">
+                        @if (Model.AvailableQuantityPerGram is not null)
+                        {
+                            <span class="quantity-number">@Model.AvailableQuantityPerGram.Value.ToString("N2")</span>
+                            <span class="quantity-unit">grams</span>
+                        }
+                        else
+                        {
+                            <span class="no-data-text">N/A</span>
+                        }
+                    </span>
+                </div>
+                @if (Model.AvailableQuantityPerGram is not null)
+                {
+                    <div class="inventory-status">
+                        @if (Model.AvailableQuantityPerGram > 500)
+                        {
+                            <span class="status-badge status-high">High Stock</span>
+                        }
+                        else if (Model.AvailableQuantityPerGram > 50)
+                        {
+                            <span class="status-badge status-medium">Medium Stock</span>
+                        }
+                        else
+                        {
+                            <span class="status-badge status-low">Low Stock</span>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Audit Information Card (Full Width) -->
+        <div class="details-card card-full-width">
+            <div class="card-header-custom header-gray">
+                <h3 class="card-title-custom">Audit Information</h3>
+                <span class="card-icon">🕐</span>
+            </div>
+            <div class="card-body-custom">
+                <div class="audit-grid">
+                    <div class="audit-section">
+                        <div class="info-row">
+                            <span class="info-label-custom">Created By</span>
+                            <span class="info-value-custom">@Model.CreatedBy</span>
+                        </div>
+                        <div class="divider-custom"></div>
+                        <div class="info-row">
+                            <span class="info-label-custom">Created On</span>
+                            <span class="info-value-custom">@Model.CreatedOn.ToString("MMM dd, yyyy hh:mm tt")</span>
+                        </div>
+                    </div>
+                    <div class="audit-section">
+                        <div class="info-row">
+                            <span class="info-label-custom">Last Modified By</span>
+                            <span class="info-value-custom">@Model.LastModifiedBy</span>
+                        </div>
+                        <div class="divider-custom"></div>
+                        <div class="info-row">
+                            <span class="info-label-custom">Last Modified On</span>
+                            <span class="info-value-custom">@Model.LastModifiedOn.ToString("MMM dd, yyyy hh:mm tt")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
