@@ -1,9 +1,11 @@
 ﻿@using CodeWithMena.PerfumeShop.DAL.Common.Enums
+@using CodeWithMena.PerfumeShop.DAL.Entities
 @using CodeWithMena.PerfumeShop.PL.Controllers
 @using CodeWithMena.PerfumeShop.PL.ViewModels.Perfumes
-@model PerfumeOilCreateDto
+@model PerfumeOilEditDto
+
 @{
-	ViewData["Title"] = "Create";
+	ViewData["Title"] = "Edit";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 
 	var allFragranceTypeOptions = new[]
@@ -18,28 +20,46 @@
 			};
 }
 
-<h1 class="text-center mb-5">Create New Perfume, Dr Kerolos</h1>
+<style>
+	/* Custom CSS separated from Bootstrap classes */
+
+	/* Customized purple and blue accents for validation and background */
+	.bg-lightpurpleblue {
+		background: linear-gradient(135deg, #d8c8ff, #a0b8ff);
+	}
+
+	.text-primary {
+		color: #5a4e9c !important;
+	}
+
+	.text-blue {
+		color: #3b5bfd;
+	}
+
+	.border-blue {
+		border-color: #6a82fb !important;
+	}
+</style>
+
+
+<h1 class="text-center mb-5">Edit Oil Perfume</h1>
 
 <div class="container bg-body-secondary py-3 ms-auto me-auto border-1 border-white rounded-3 shadow-lg">
-	<form asp-action="@nameof(PerfumesOilController.Create)">
+	<form asp-action="@nameof(PerfumesOilController.Edit)">
 		<div asp-validation-summary="All" class="text-danger"></div>
 
 		<!-- Name -->
 		<div class="form-floating mb-3">
 			<input asp-for="Name" type="text" class="form-control" placeholder="Perfume Name" />
-			<label asp-for="Name">
-				Perfume Name like دانهيل ديزاير
-				<span class="text-danger">*</span>
-			</label>
+			<label asp-for="Name">Perfume Name like دانهيل ديزاير</label>
+			<span asp-validation-for="Name" class="text-danger"></span>
 		</div>
 
 		<!-- Sale Price -->
 		<div class="form-floating mb-3">
-			<input inputmode="numeric" type="text" asp-for="PerfumePrice.SalePrice" class="form-control" placeholder="Sale Price" />
-			<label asp-for="PerfumePrice.SalePrice">
-				Sale Price like 5 or 8.5 etc.
-				<span class="text-danger">*</span>
-			</label>
+			<input inputmode="numeric" asp-for="PerfumePrice.SalePrice" type="text" class="form-control" placeholder="Sale Price" />
+			<label asp-for="PerfumePrice.SalePrice">Sale Price like 5 or 8.5 etc.</label>
+			<span asp-validation-for="PerfumePrice.SalePrice" class="text-danger"></span>
 		</div>
 
 		<!-- Supplier Price -->
@@ -47,24 +67,20 @@
 			<span class="text-secondary">*That field is optional</span>
 			<div class="form-floating mb-3">
 				<input inputmode="numeric" asp-for="PerfumePrice.SupplierPrice" type="text" class="form-control" placeholder="Supplier Price" />
-				<label asp-for="PerfumePrice.SupplierPrice">
-					Supplier Price like 3.2 or 4 etc.
-				</label>
+				<label asp-for="PerfumePrice.SupplierPrice">Supplier Price like 3.2 or 4 etc.</label>
+				<span asp-validation-for="PerfumePrice.SupplierPrice" class="text-danger"></span>
 			</div>
 		</div>
-
 
 		<!-- Available Quantity -->
 		<div>
 			<span class="text-secondary">*That field is optional</span>
 			<div class="form-floating mb-3">
 				<input asp-for="AvailableQuantityPerGram" inputmode="numeric" type="text" class="form-control" placeholder="Available Amount" />
-				<label asp-for="AvailableQuantityPerGram">
-					Available Amount Per Gram
-				</label>
+				<label asp-for="AvailableQuantityPerGram">Available Amount Per Gram</label>
+				<span asp-validation-for="AvailableQuantityPerGram" class="text-danger"></span>
 			</div>
 		</div>
-
 
 		<!-- Fragrance Type -->
 		<div class="bg-white mb-3 p-3 rounded-3  ">
@@ -87,21 +103,16 @@
 		<div class="bg-white mb-3 p-3 rounded-3">
 			<div class="text-center">
 				<label asp-for="FragranceFamily" class="control-label fw-bold mb-2"></label>
-				<select asp-for="FragranceFamily" class="form-control " asp-items="Html.GetEnumSelectList<FragranceFamily>()">
-					<option class="text-center" value="@null">-- Select Fragrance Family --</option>
+				<select asp-for="FragranceFamily" class="form-control" asp-items="Html.GetEnumSelectList<FragranceFamily>()">
+					<option value="">-- Select Fragrance Family --</option>
 				</select>
 				<span asp-validation-for="FragranceFamily" class="text-danger"></span>
 			</div>
 		</div>
 
-
-
-
 		<!-- Rating -->
 		<div style="background-color: aqua" class="rounded-3 bg-white p-3 my-3">
-			<label asp-for="RatingOfSale" class="form-label form-group">
-				Rating of Sale From 1 to 10
-			</label>
+			<label asp-for="RatingOfSale" class="form-label">Rating of Sale From 1 to 10</label>
 			<span class="text-danger">*</span>
 			<input asp-for="RatingOfSale" type="range" class="form-range" min="0" max="10" value="0" id="range4" />
 			<output for="range4" id="rangeValue" aria-hidden="true"></output>
@@ -113,14 +124,11 @@
 </div>
 
 <script>
-	// This is an example script, please modify as needed
+	// Sync range input value
 	const rangeInput = document.getElementById("range4");
 	const rangeOutput = document.getElementById("rangeValue");
-
-	// Set initial value
 	rangeOutput.textContent = rangeInput.value;
-
-	rangeInput.addEventListener("input", function() {
-		rangeOutput.textContent = this.value;
+	rangeInput.addEventListener("input", () => {
+		rangeOutput.textContent = rangeInput.value;
 	});
 </script>
