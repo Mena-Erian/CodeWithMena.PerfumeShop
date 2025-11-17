@@ -13,8 +13,9 @@
 		<tr>
 			<th scope="col">#</th>
 			<th scope="col">Name</th>
-			<th scope="col">Fragrance Type</th>
+			<th scope="col">Available</th>
 			<th scope="col">Supplier Price</th>
+			<th scope="col">Fragrance Type</th>
 			<th scope="col">Fragrance Family</th>
 			<th scope="col">Rating Of Sale</th>
 			<th scope="col">Sale Price</th>
@@ -27,8 +28,9 @@
 			<tr>
 				<td class="visually-hidden" value="@perfume.Id" />
 				<td>@perfume.Name</td>
-				<td>@perfume.FragranceType</td>
+				<td>@(perfume.AvailableQuantityPerGram is not null ? $"{perfume.AvailableQuantityPerGram} g": "Not Found")  </td>
 				<td>@perfume.PerfumePrice?.SupplierPrice</td>
+				<td>@perfume.FragranceType</td>
 				<td>@perfume.FragranceFamily</td>
 				<td>@perfume.RatingOfSale</td>
 				<td>@perfume.PerfumePrice?.SalePrice</td>

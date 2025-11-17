@@ -1,4 +1,5 @@
-﻿@using CodeWithMena.PerfumeShop.PL.Controllers
+﻿@using CodeWithMena.PerfumeShop.DAL.Common.Enums
+@using CodeWithMena.PerfumeShop.PL.Controllers
 @using CodeWithMena.PerfumeShop.PL.ViewModels.Perfumes
 @model PerfumeOilCreateDto
 @{
@@ -8,16 +9,107 @@
 
 <h1 class="text-center mb-5">Create New Perfume, Dr Kerolos</h1>
 
-<div class="container bg-body-secondary ms-auto me-auto border-1 border-white rounded-3 shadow-lg">
-	<form class="bg-info-subtle" asp-action="@nameof(PerfumesOilController.Create)">
+<div class="container bg-body-secondary py-3 ms-auto me-auto border-1 border-white rounded-3 shadow-lg">
+	<form asp-action="@nameof(PerfumesOilController.Create)">
 		<div asp-validation-summary="All" class="text-danger"></div>
 
-		<div asp-for="" class="form-floating mb-3">
-			<input  type="text" class="form-control" placeholder="Danhal Desier" />
+		<!-- Name -->
+		<div class="form-floating mb-3">
+			<input asp-for="Name" type="text" class="form-control" placeholder="Perfume Name" />
 			<label asp-for="Name">
-				Perfume Name
+				Perfume Name like دانهيل ديزاير
 				<span class="text-danger">*</span>
 			</label>
 		</div>
+
+		<!-- Sale Price -->
+		<div class="form-floating mb-3">
+			<input inputmode="numeric" type="text" asp-for="PerfumePrice.SalePrice" class="form-control" placeholder="Sale Price" />
+			<label asp-for="PerfumePrice.SalePrice">
+				Sale Price like 5 or 8.5 etc.
+				<span class="text-danger">*</span>
+			</label>
+		</div>
+
+		<!-- Supplier Price -->
+		<div>
+			<span class="text-secondary">*That field is optional</span>
+			<div class="form-floating mb-3">
+				<input inputmode="numeric" asp-for="PerfumePrice.SupplierPrice" type="text" class="form-control" placeholder="Supplier Price" />
+				<label asp-for="PerfumePrice.SupplierPrice">
+					Supplier Price like 3.2 or 4 etc.
+				</label>
+			</div>
+		</div>
+
+
+		<!-- Available Quantity -->
+		<div>
+			<span class="text-secondary">*That field is optional</span>
+			<div class="form-floating mb-3">
+				<input asp-for="AvailableQuantityPerGram" inputmode="numeric" type="text" class="form-control" placeholder="Available Amount" />
+				<label asp-for="AvailableQuantityPerGram">
+					Available Amount Per Gram
+				</label>
+			</div>
+		</div>
+
+
+		<!-- Fragrance Type -->
+		<div class="bg-white mb-3 p-3 rounded-3  ">
+			<div>
+				<div class="control-label fw-bold mb-2">What is The Fragrance Type</div>
+				@foreach (var genderOption in Enum.GetValues(typeof(FragranceType)))
+				{
+					<div class="form-check">
+						<input class="control-label" type="radio" asp-for="FragranceType" id="@genderOption" value="@genderOption" />
+						<label class="form-check-label" asp-for="FragranceType" for="@genderOption">
+							@genderOption
+						</label>
+						<span asp-validation-for="FragranceType" class="text-danger"></span>
+					</div>
+				}
+			</div>
+		</div>
+
+		<!-- Fragrance Family -->
+		<div class="bg-white mb-3 p-3 rounded-3">
+			<div class="text-center">
+				<label asp-for="FragranceFamily" class="control-label fw-bold mb-2"></label>
+				<select asp-for="FragranceFamily" class="form-control " asp-items="Html.GetEnumSelectList<FragranceFamily>()">
+					<option class="text-center" value="@null">-- Select Fragrance Family --</option>
+				</select>
+				<span asp-validation-for="FragranceFamily" class="text-danger"></span>
+			</div>
+		</div>
+
+
+
+
+		<!-- Rating -->
+		<div style="background-color: aqua" class="rounded-3 bg-white p-3 my-3">
+			<label asp-for="RatingOfSale" class="form-label form-group">
+				Rating of Sale From 1 to 10
+			</label>
+			<span class="text-danger">*</span>
+			<input asp-for="RatingOfSale" type="range" class="form-range" min="0" max="10" value="0" id="range4" />
+			<output for="range4" id="rangeValue" aria-hidden="true"></output>
+		</div>
+
+		<button type="submit" class="btn btn-info w-100 text-white">Save</button>
+
 	</form>
 </div>
+
+<script>
+	// This is an example script, please modify as needed
+	const rangeInput = document.getElementById("range4");
+	const rangeOutput = document.getElementById("rangeValue");
+
+	// Set initial value
+	rangeOutput.textContent = rangeInput.value;
+
+	rangeInput.addEventListener("input", function() {
+		rangeOutput.textContent = this.value;
+	});
+</script>

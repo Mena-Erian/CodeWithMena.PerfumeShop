@@ -102,7 +102,10 @@
                 <div
                     class="container bg-body-secondary ms-auto me-auto border-1 border-white rounded-3 shadow-lg"
                 >
-                    <form asp-action="@nameof(PerfumesOilController.Create)">
+                    <form
+                        class="py-3"
+                        asp-action="@nameof(PerfumesOilController.Create)"
+                    >
                         <div
                             asp-validation-summary="All"
                             class="text-danger"
@@ -120,6 +123,54 @@
                                 <span class="text-danger">*</span>
                             </label>
                         </div>
+
+                        <!-- Sale Price -->
+                        <div class="form-floating mb-3">
+                            <input
+                                type="number"
+                                class="form-control"
+                                placeholder="Danhal Desier"
+                            />
+                            <label asp-for="SalePrice">
+                                Sale Price like 5 or 8.5 etc.
+                                <span class="text-danger">*</span>
+                            </label>
+                        </div>
+
+                        <!-- Availbale Quntaty -->
+                        <div>
+                            <span class="text-secondary"
+                                >*That field is opitonal</span
+                            >
+                            <div class="form-floating mb-3">
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder="104g"
+                                />
+                                <label asp-for="Availbale">
+                                    Availbale Amount Per Gram
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Supplier Price -->
+                        <div>
+                            <span class="text-secondary"
+                                >*That field is opitonal</span
+                            >
+                            <div class="form-floating mb-3">
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder="Danhal Desier"
+                                />
+                                <label asp-for="Name">
+                                    Supplier Price like 3.2 or 4 etc.
+                                </label>
+                            </div>
+                        </div>
+
                         <!-- Fragrance Type -->
                         <div class="bg-white p-3 my-3 rounded-3">
                             <label class="mb-2"
@@ -130,13 +181,10 @@
                                 <input
                                     class="form-check-input"
                                     type="radio"
-                                    name="radioDefault"
-                                    id="radioDefault1"
+                                    name="FragranceType"
+                                    id="Male"
                                 />
-                                <label
-                                    class="form-check-label"
-                                    for="radioDefault1"
-                                >
+                                <label class="form-check-label" for="Male">
                                     Male
                                 </label>
                             </div>
@@ -144,14 +192,11 @@
                                 <input
                                     class="form-check-input"
                                     type="radio"
-                                    name="radioDefault"
-                                    id="radioDefault2"
+                                    name="FragranceType"
+                                    id="Female"
                                     checked
                                 />
-                                <label
-                                    class="form-check-label"
-                                    for="radioDefault2"
-                                >
+                                <label class="form-check-label" for="Female">
                                     Female
                                 </label>
                             </div>
@@ -159,15 +204,55 @@
                                 <input
                                     class="form-check-input"
                                     type="radio"
-                                    name="radioDefault"
-                                    id="radioDefault2"
+                                    name="FragranceType"
+                                    id="Both"
                                     checked
                                 />
-                                <label
-                                    class="form-check-label"
-                                    for="radioDefault2"
-                                >
+                                <label class="form-check-label" for="Both">
                                     Both
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="FragranceType"
+                                    id="East"
+                                    checked
+                                />
+                                <label class="form-check-label" for="East">
+                                    East
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="FragranceType"
+                                    id="Other"
+                                    checked
+                                />
+                                <label class="form-check-label" for="Other">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Fragrance Family -->
+                        <div class="bg-white p-3 my-3 rounded-3">
+                            <label class="mb-2"
+                                >What is the Fragrance Family of this
+                                Perfume?</label
+                            >
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="Sugery"
+                                />
+                                <label class="form-check-label" for="Sugery">
+                                    Sugery
                                 </label>
                             </div>
                             <div class="form-check">
@@ -182,7 +267,67 @@
                                     class="form-check-label"
                                     for="radioDefault2"
                                 >
-                                    East
+                                    Floral
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Citrus
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Woody
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Oriental
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Fresh
                                 </label>
                             </div>
                             <div class="form-check">
@@ -199,6 +344,53 @@
                                 >
                                     Other
                                 </label>
+                            </div>
+                        </div>
+
+                        <div class="form-row d-flex justify-content-between">
+                            <div class="form-group col-6">
+                                @foreach (var genderOption in
+                                Enum.GetValues(typeof(Gender))) {
+                                <div class="form-check">
+                                    <input
+                                        type="radio"
+                                        asp-for="Gender"
+                                        value="@genderOption"
+                                        class="control-label"
+                                        placeholder="Male - Female"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        asp-for="Gender"
+                                    >
+                                        @genderOption
+                                    </label>
+                                    <span
+                                        asp-validation-for="Gender"
+                                        class="text-danger"
+                                    ></span>
+                                </div>
+                                }
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label
+                                    asp-for="EmployeeType"
+                                    class="control-label"
+                                ></label>
+                                <select
+                                    asp-for="EmployeeType"
+                                    class="form-control"
+                                    asp-items="Html.GetEnumSelectList<EmployeeType>()"
+                                >
+                                    <option value="@null">
+                                        -- Select Employee Type --
+                                    </option>
+                                </select>
+                                <span
+                                    asp-validation-for="EmployeeType"
+                                    class="text-danger"
+                                ></span>
                             </div>
                         </div>
 
@@ -224,31 +416,6 @@
                                 id="rangeValue"
                                 aria-hidden="true"
                             ></output>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Danhal Desier"
-                            />
-                            <label asp-for="Name">
-                                Sale Price like 5 or 8.5 etc.
-                                <span class="text-danger">*</span>
-                            </label>
-                        </div>
-                        <span class="text-secondary"
-                            >*That field is opitonal</span
-                        >
-                        <div class="form-floating mb-3">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Danhal Desier"
-                            />
-                            <label asp-for="Name">
-                                Supplier Price like 3.2 or 4 etc.
-                            </label>
                         </div>
                     </form>
                 </div>

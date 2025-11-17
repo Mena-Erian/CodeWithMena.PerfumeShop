@@ -29,10 +29,13 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
                 Id = Guid.NewGuid(),
                 Name = perfumeOil.Name,
                 PerfumePrice = perfumeOil.PerfumePrice,
-                CreatedBy = perfumeOil.CreatedBy,
-                LastModifiedBy = perfumeOil.LastModifiedBy,
+                AvailableQuantityPerGram = perfumeOil.AvailableQuantityPerGram,
+                CreatedBy = "",
+                LastModifiedBy = "",
                 Description = perfumeOil.Description,
-                FragranceType = perfumeOil.FragranceType
+                FragranceType = perfumeOil.FragranceType,
+                FragranceFamily = perfumeOil.FragranceFamily,
+                RatingOfSale = perfumeOil.RatingOfSale
             });
 
             return RedirectToAction(nameof(Index));
