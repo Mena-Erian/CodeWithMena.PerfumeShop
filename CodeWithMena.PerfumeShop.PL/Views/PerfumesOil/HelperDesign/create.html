@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - CodeWithMena.PerfumeShop.PL</title>
+        <script type="importmap"></script>
+        <link
+            rel="stylesheet"
+            href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="~/css/site.css"
+            asp-append-version="true"
+        />
+        <link
+            rel="stylesheet"
+            href="~/CodeWithMena.PerfumeShop.PL.styles.css"
+            asp-append-version="true"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <header>
+            <nav
+                class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+            >
+                <div class="container-fluid">
+                    <a
+                        class="navbar-brand"
+                        asp-area=""
+                        asp-controller="Home"
+                        asp-action="Index"
+                        >CodeWithMena.PerfumeShop.PL</a
+                    >
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="navbar-collapse collapse d-sm-inline-flex justify-content-between"
+                    >
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-dark"
+                                    asp-area=""
+                                    asp-controller="Home"
+                                    asp-action="Index"
+                                    >Home</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-dark"
+                                    asp-area=""
+                                    asp-controller="Home"
+                                    asp-action="Privacy"
+                                    >Privacy</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-bg-danger"
+                                    asp-area=""
+                                    asp-controller="PerfumesOil"
+                                    asp-action="Index"
+                                    >Perfumes Oil</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link ms-auto text-bg-info"
+                                    asp-area=""
+                                    asp-controller="PerfumesOil"
+                                    asp-action="Create"
+                                    >Create Perfumes Oil</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                <h1 class="text-center mb-5">Create New Perfume, Dr Kerolos</h1>
+
+                <div
+                    class="container bg-body-secondary ms-auto me-auto border-1 border-white rounded-3 shadow-lg"
+                >
+                    <form
+                        class="py-3"
+                        asp-action="@nameof(PerfumesOilController.Create)"
+                    >
+                        <div
+                            asp-validation-summary="All"
+                            class="text-danger"
+                        ></div>
+
+                        <!-- Name -->
+                        <div class="form-floating mb-3">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Danhal Desier"
+                            />
+                            <label asp-for="Name">
+                                Perfume Name like دانهيل ديزاير
+                                <span class="text-danger">*</span>
+                            </label>
+                        </div>
+
+                        <!-- Sale Price -->
+                        <div class="form-floating mb-3">
+                            <input
+                                type="number"
+                                class="form-control"
+                                placeholder="Danhal Desier"
+                            />
+                            <label asp-for="SalePrice">
+                                Sale Price like 5 or 8.5 etc.
+                                <span class="text-danger">*</span>
+                            </label>
+                        </div>
+
+                        <!-- Availbale Quntaty -->
+                        <div>
+                            <span class="text-secondary"
+                                >*That field is opitonal</span
+                            >
+                            <div class="form-floating mb-3">
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder="104g"
+                                />
+                                <label asp-for="Availbale">
+                                    Availbale Amount Per Gram
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Supplier Price -->
+                        <div>
+                            <span class="text-secondary"
+                                >*That field is opitonal</span
+                            >
+                            <div class="form-floating mb-3">
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder="Danhal Desier"
+                                />
+                                <label asp-for="Name">
+                                    Supplier Price like 3.2 or 4 etc.
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Fragrance Type -->
+                        <div class="bg-white p-3 my-3 rounded-3">
+                            <label class="mb-2"
+                                >What is the Fragrance Type of this
+                                Perfume?</label
+                            >
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="FragranceType"
+                                    id="Male"
+                                />
+                                <label class="form-check-label" for="Male">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="FragranceType"
+                                    id="Female"
+                                    checked
+                                />
+                                <label class="form-check-label" for="Female">
+                                    Female
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="FragranceType"
+                                    id="Both"
+                                    checked
+                                />
+                                <label class="form-check-label" for="Both">
+                                    Both
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="FragranceType"
+                                    id="East"
+                                    checked
+                                />
+                                <label class="form-check-label" for="East">
+                                    East
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="FragranceType"
+                                    id="Other"
+                                    checked
+                                />
+                                <label class="form-check-label" for="Other">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Fragrance Family -->
+                        <div class="bg-white p-3 my-3 rounded-3">
+                            <label class="mb-2"
+                                >What is the Fragrance Family of this
+                                Perfume?</label
+                            >
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="Sugery"
+                                />
+                                <label class="form-check-label" for="Sugery">
+                                    Sugery
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Floral
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Citrus
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Woody
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Oriental
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Fresh
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="radioDefault"
+                                    id="radioDefault2"
+                                    checked
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="radioDefault2"
+                                >
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-row d-flex justify-content-between">
+                            <div class="form-group col-6">
+                                @foreach (var genderOption in
+                                Enum.GetValues(typeof(Gender))) {
+                                <div class="form-check">
+                                    <input
+                                        type="radio"
+                                        asp-for="Gender"
+                                        value="@genderOption"
+                                        class="control-label"
+                                        placeholder="Male - Female"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        asp-for="Gender"
+                                    >
+                                        @genderOption
+                                    </label>
+                                    <span
+                                        asp-validation-for="Gender"
+                                        class="text-danger"
+                                    ></span>
+                                </div>
+                                }
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label
+                                    asp-for="EmployeeType"
+                                    class="control-label"
+                                ></label>
+                                <select
+                                    asp-for="EmployeeType"
+                                    class="form-control"
+                                    asp-items="Html.GetEnumSelectList<EmployeeType>()"
+                                >
+                                    <option value="@null">
+                                        -- Select Employee Type --
+                                    </option>
+                                </select>
+                                <span
+                                    asp-validation-for="EmployeeType"
+                                    class="text-danger"
+                                ></span>
+                            </div>
+                        </div>
+
+                        <!-- Rating -->
+                        <div
+                            style="background-color: aqua"
+                            class="rounded-3 bg-white p-3 my-3"
+                        >
+                            <label for="range4" class="form-label form-group">
+                                Rating of Sale From 1 to 10</label
+                            >
+                            <span class="text-danger">*</span>
+                            <input
+                                type="range"
+                                class="form-range"
+                                min="1"
+                                max="10"
+                                value="1"
+                                id="range4"
+                            />
+                            <output
+                                for="range4"
+                                id="rangeValue"
+                                aria-hidden="true"
+                            ></output>
+                        </div>
+                    </form>
+                </div>
+                <script>
+                    // This is an example script, please modify as needed
+                    const rangeInput = document.getElementById("range4");
+                    const rangeOutput = document.getElementById("rangeValue");
+
+                    // Set initial value
+                    rangeOutput.textContent = rangeInput.value;
+
+                    rangeInput.addEventListener("input", function () {
+                        rangeOutput.textContent = this.value;
+                    });
+                </script>
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2025 - CodeWithMena.PerfumeShop.PL -
+                <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                    >Privacy</a
+                >
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- @await RenderSectionAsync("Scripts", required: false) -->
+    </body>
+</html>

@@ -1,0 +1,103 @@
+﻿@using CodeWithMena.PerfumeShop.DAL.Entities
+@using System.Collections.Generic
+@model ICollection<PerfumeOil>
+@{
+	ViewData["Title"] = "Perfumes Oil";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="perfume-container">
+	<!-- Header Section -->
+	<div class="perfume-header">
+		<div class="perfume-header-content">
+			<h1 class="perfume-title">Perfumes Oil</h1>
+			<a class="btn-perfume-add" asp-area="" asp-controller="PerfumesOil" asp-action="Create">
+				<span class="btn-icon">+</span>
+				<span class="btn-text">New Oil Perfume</span>
+			</a>
+		</div>
+	</div>
+
+	<!-- Perfumes Grid -->
+	<div class="perfume-grid">
+		@foreach (var perfume in Model)
+		{
+			<div class="perfume-card" onclick="viewDetails('@perfume.Id')">
+				<input type="hidden" class="perfume-id" value="@perfume.Id" />
+
+				<div class="perfume-card-header">
+					<h3 class="perfume-name">@perfume.Name</h3>
+					<div class="perfume-badge">
+						@if (perfume.AvailableQuantityPerGram is not null && perfume.AvailableQuantityPerGram > 0)
+						{
+							<span class="badge-success">In Stock</span>
+						}
+						else
+						{
+							<span class="badge-danger">Out of Stock</span>
+						}
+					</div>
+				</div>
+
+				<div class="perfume-card-body">
+					<div class="perfume-info-item">
+						<span class="info-label">Available Quantity</span>
+						<span class="info-value-quantity">
+							@if (perfume.AvailableQuantityPerGram is not null)
+							{
+								<span>@perfume.AvailableQuantityPerGram <small>grams</small></span>
+							}
+							else
+							{
+								<span class="text-muted">Not Available</span>
+							}
+						</span>
+					</div>
+
+					<div class="perfume-divider"></div>
+
+					<div class="perfume-info-item">
+						<span class="info-label">Sale Price Per Gram</span>
+						<span class="info-value-price">
+							@if (perfume.PerfumePrice?.SalePrice is not null)
+							{
+								<span>@perfume.PerfumePrice.SalePrice.Value.ToString("C")</span>
+							}
+							else
+							{
+								<span class="text-muted">N/A</span>
+							}
+						</span>
+					</div>
+				</div>
+
+				<div class="perfume-card-footer">
+					<button type="button" class="btn-view-details" onclick="event.stopPropagation(); viewDetails('@perfume.Id')">
+						View Details
+					</button>
+				</div>
+			</div>
+		}
+	</div>
+
+	<!-- Empty State -->
+	@if (!Model.Any())
+	{
+		<div class="perfume-empty-state">
+			<div class="empty-icon">📦</div>
+			<h3 class="empty-title">No Perfumes Found</h3>
+			<p class="empty-text">Start by adding your first oil perfume</p>
+			<a class="btn-perfume-add" asp-area="" asp-controller="PerfumesOil" asp-action="Create">
+				<span class="btn-icon">+</span>
+				<span class="btn-text">Add New Perfume</span>
+			</a>
+		</div>
+	}
+</div>
+
+<script>
+	function viewDetails(id) {
+		// Navigate to details page
+		window.location.href = '/PerfumesOil/Details/' + id;
+	}
+</script>

@@ -1,0 +1,44 @@
+[
+  {
+    "Id": "",
+    "CreatedBy": "MockDataGenerator",
+    "CreatedOn": "",
+    "LastModifiedBy": "MockDataGenerator",
+    "LastModifiedOn": "",
+    "Name": "Midnight Bloom",
+    "Description": "A captivating blend of floral notes, evoking a sense of wonder.",
+    "FragranceType": "Female",
+    "FragranceFamily": "Floral",
+    "RatingOfSale": 5,
+    "SupplierPrice": 3.500,
+    "SalePrice": 5.00
+  },
+  {
+    "Id": "",
+    "CreatedBy": "MockDataGenerator",
+    "CreatedOn": "",
+    "LastModifiedBy": "MockDataGenerator",
+    "LastModifiedOn": "",
+    "Name": "Midnight Oud",
+    "Description": "Deep, mysterious, and seductive. An essential for unforgettable evenings.",
+    "FragranceType": "East",
+    "FragranceFamily": "Oriental",
+    "RatingOfSale": 9,
+    "SupplierPrice": 5.000,
+    "SalePrice": 8.500
+  },
+  {
+    "Id": "",
+    "CreatedBy": "MockDataGenerator",
+    "CreatedOn": "",
+    "LastModifiedBy": "MockDataGenerator",
+    "LastModifiedOn": "",
+    "Name": "Midnight Rose",
+    "Description": "A light and airy scent reminiscent of a blooming rose in spring.",
+    "FragranceType": "Female",
+    "FragranceFamily": "Floral",
+    "RatingOfSale": 5,
+    "SupplierPrice": 8.200,
+    "SalePrice": 12
+  }
+]

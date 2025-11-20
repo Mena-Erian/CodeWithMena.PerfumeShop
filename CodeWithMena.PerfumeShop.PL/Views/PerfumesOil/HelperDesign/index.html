@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - CodeWithMena.PerfumeShop.PL</title>
+        <script type="importmap"></script>
+        <link
+            rel="stylesheet"
+            href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="~/css/site.css"
+            asp-append-version="true"
+        />
+        <link
+            rel="stylesheet"
+            href="~/CodeWithMena.PerfumeShop.PL.styles.css"
+            asp-append-version="true"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <header>
+            <nav
+                class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+            >
+                <div class="container-fluid">
+                    <a
+                        class="navbar-brand"
+                        asp-area=""
+                        asp-controller="Home"
+                        asp-action="Index"
+                        >CodeWithMena.PerfumeShop.PL</a
+                    >
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="navbar-collapse collapse d-sm-inline-flex justify-content-between"
+                    >
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-dark"
+                                    asp-area=""
+                                    asp-controller="Home"
+                                    asp-action="Index"
+                                    >Home</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-dark"
+                                    asp-area=""
+                                    asp-controller="Home"
+                                    asp-action="Privacy"
+                                    >Privacy</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-bg-danger"
+                                    asp-area=""
+                                    asp-controller="PerfumesOil"
+                                    asp-action="Index"
+                                    >Perfumes Oil</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link ms-auto text-bg-info"
+                                    asp-area=""
+                                    asp-controller="PerfumesOil"
+                                    asp-action="Create"
+                                    >Create Perfumes Oil</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                <h1>Perfumes Oil</h1>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Available</th>
+                            <th scope="col">Supplier Price</th>
+                            <th scope="col">Fragrance Type</th>
+                            <th scope="col">Fragrance Family</th>
+                            <th scope="col">Rating Of Sale</th>
+                            <th scope="col">Sale Price</th>
+                            <th scope="col">Last Modified On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var perfume in Model) {
+                        <tr>
+                            <td class="visually-hidden" value="@perfume.Id" />
+                            <td>@perfume.Name</td>
+                            <td>
+                                @(perfume.AvailableQuantityPerGram is not null ?
+                                $"{perfume.AvailableQuantityPerGram} g": "Not
+                                Found")
+                            </td>
+                            <td>@perfume.PerfumePrice?.SupplierPrice</td>
+                            <td>@perfume.FragranceType</td>
+                            <td>@perfume.FragranceFamily</td>
+                            <td>@perfume.RatingOfSale</td>
+                            <td>@perfume.PerfumePrice?.SalePrice</td>
+                            <td>@perfume.LastModifiedOn</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <script>
+                    // This is an example script, please modify as needed
+                    const rangeInput = document.getElementById("range4");
+                    const rangeOutput = document.getElementById("rangeValue");
+
+                    // Set initial value
+                    rangeOutput.textContent = rangeInput.value;
+
+                    rangeInput.addEventListener("input", function () {
+                        rangeOutput.textContent = this.value;
+                    });
+                </script>
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2025 - CodeWithMena.PerfumeShop.PL -
+                <a asp-area="" asp-controller="Home" asp-action="Privacy"
+                    >Privacy</a
+                >
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- @await RenderSectionAsync("Scripts", required: false) -->
+    </body>
+</html>
