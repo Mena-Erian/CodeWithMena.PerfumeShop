@@ -94,6 +94,7 @@
 }
 
 .perfume-name {
+    max-width: 50%;
     font-size: 1.5rem;
     font-weight: 700;
     color: #1e293b;
@@ -132,14 +133,13 @@
 
 /* Card Body */
 .perfume-card-body {
-    padding: 1.5rem;
+    padding: 0.25rem 0.75rem 0;
 }
 
 .perfume-info-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.75rem;
 }
 
 .info-label {
@@ -273,6 +273,7 @@
 
     .perfume-name {
         font-size: 1.25rem;
+        max-width: 33.333%;
     }
 
     .info-value-price {

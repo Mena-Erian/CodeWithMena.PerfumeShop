@@ -15,7 +15,7 @@ namespace CodeWithMena.PerfumeShop.DAL
         {
             services.AddDbContext<PerfumesShopDbContext>(optionBuilder =>
             {
-                optionBuilder.UseSqlServer(configuration.GetConnectionString("SqlConnection"));
+                optionBuilder.UseSqlServer(configuration.GetConnectionString("DevConnection"));
             });
 
             services.AddScoped<IDbInitializer, DbInitializer>();
