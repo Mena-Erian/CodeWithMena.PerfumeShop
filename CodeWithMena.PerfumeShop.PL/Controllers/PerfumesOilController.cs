@@ -115,12 +115,12 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
             return Json(allPerfumes);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            bool isDeleted = await perfumeOilService.DeletePerfumeOilAsync(id);
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Delete(Guid id)
+        //{
+        //    bool isDeleted = await perfumeOilService.DeletePerfumeOilAsync(id);
+        //    return RedirectToAction(nameof(Index));
+        //}
 
     }
 }

@@ -8,13 +8,9 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+             return RedirectToAction(actionName:"Index", "PerfumesOil");
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

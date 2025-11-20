@@ -21,7 +21,8 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.DbInitializer
         {
             if (!dbContext.PerfumeOils.Any())
             {
-                var perfumesOilData = File.ReadAllText("../CodeWithMena.PerfumeShop.DAL/Persistence/Data/Seeds/PerfumesOil.json");
+                //var perfumesOilData = File.ReadAllText("../CodeWithMena.PerfumeShop.DAL/Persistence/Data/Seeds/PerfumesOil.json");
+                var perfumesOilData = " {\r\n   \"Id\": \"\",\r\n   \"CreatedBy\": \"MockDataGenerator\",\r\n   \"CreatedOn\": \"\",\r\n   \"LastModifiedBy\": \"MockDataGenerator\",\r\n   \"LastModifiedOn\": \"\",\r\n   \"Name\": \"Midnight Bloom\",\r\n   \"Description\": \"A captivating blend of floral notes, evoking a sense of wonder.\",\r\n   \"FragranceType\": \"Female\",\r\n   \"FragranceFamily\": \"Floral\",\r\n   \"RatingOfSale\": 5,\r\n   \"SupplierPrice\": 3.500,\r\n   \"SalePrice\": 5.00\r\n }";
 
                 var perfumes = JsonSerializer.Deserialize<List<PerfumeOil>>(perfumesOilData, new JsonSerializerOptions()
                 {
