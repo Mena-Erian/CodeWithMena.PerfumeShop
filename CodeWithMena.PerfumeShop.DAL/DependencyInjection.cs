@@ -14,8 +14,9 @@ namespace CodeWithMena.PerfumeShop.DAL
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<PerfumesShopDbContext>(optionBuilder =>
-            {
+            {                                                                   
                 optionBuilder.UseSqlServer(configuration.GetConnectionString("DevConnection"));
+                //optionBuilder.UseSqlServer(configuration.GetConnectionString("SqlConnection"));
             });
 
             services.AddScoped<IDbInitializer, DbInitializer>();

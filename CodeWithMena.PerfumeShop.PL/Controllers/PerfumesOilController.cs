@@ -12,8 +12,15 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
     public class PerfumesOilController(IPerfumeOilService perfumeOilService) : Controller
     {
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(FragranceType? fragranceType)
         {
+            if (fragranceType is not null)
+            {
+                ViewData["CurrentFilter"] = fragranceType;
+                ViewData["IsFragranceTypeHasValue"] = true;
+                return View(await perfumeOilService.FilterByFragrancyType(fragranceType.Value));
+            }
+            ViewData["IsFragranceTypeHasValue"] = false;
             return View(await perfumeOilService.GetAllPerfumesOilAsync());
         }
 
@@ -44,6 +51,7 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
@@ -104,8 +112,8 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
             await perfumeOilService.UpdatePerfumeOilAsync(perfume);
 
             return RedirectToAction(actionName: nameof(Details), new { perfume.Id, viewName = "Details" });
-        }
 
+        }
 
         [HttpGet]
         public async Task<IActionResult> Download()
@@ -114,6 +122,8 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
 
             return Json(allPerfumes);
         }
+
+
 
         //[HttpGet]
         //public async Task<IActionResult> Delete(Guid id)
