@@ -1,4 +1,5 @@
 ﻿using CodeWithMena.PerfumeShop.DAL.Common.Entities;
+using CodeWithMena.PerfumeShop.DAL.Common.Enums;
 using CodeWithMena.PerfumeShop.DAL.Entities;
 using CodeWithMena.PerfumeShop.DAL.Persistence.Data.Configurations.Common;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -17,6 +18,28 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Configurations.PerfumeOi
             builder.Property(p => p.AvailableQuantityPerGram)
                 .IsRequired(false);
 
+            builder.Property(p => p.Code)
+                .HasMaxLength(25)
+                .IsRequired(false);
+
+            builder.Property(p => p.FashionHouse)
+                .HasMaxLength(25)
+                .IsRequired(false);
+
+            builder.Property(p => p.AlternativeName)
+                .HasMaxLength(50)
+                .IsRequired(false);
+
+            builder.Property(p => p.SupplierName)
+                .HasMaxLength(50)
+                .IsRequired(false);
+
+            builder.Property(p => p.ManufacturingCompany)
+                .IsRequired(false)
+                .HasConversion(
+                    manufacturer => manufacturer.ToString(),
+                    manufacturer => Enum.Parse<ManufacturingCompany>(manufacturer)
+                ).HasMaxLength(50);
         }
     }
 }

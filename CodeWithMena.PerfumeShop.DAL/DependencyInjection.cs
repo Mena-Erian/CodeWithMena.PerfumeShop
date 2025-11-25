@@ -17,6 +17,7 @@ namespace CodeWithMena.PerfumeShop.DAL
             {                                                                   
                 optionBuilder.UseSqlServer(configuration.GetConnectionString("DevConnection"));
                 //optionBuilder.UseSqlServer(configuration.GetConnectionString("SqlConnection"));
+                //optionBuilder.UseSqlServer(configuration.GetConnectionString("SqlRemoteConnection"));
             });
 
             services.AddScoped<IDbInitializer, DbInitializer>();

@@ -32,5 +32,10 @@ namespace CodeWithMena.PerfumeShop.DAL.Common.Entities
             => (lPrice?.SalePrice == rPrice?.SalePrice) && (lPrice?.SupplierPrice == rPrice?.SupplierPrice);
         public static bool operator !=(BasePerfumePrice? lPrice, BasePerfumePrice? rPrice)
                   => !(lPrice == rPrice);
+
+        public override string ToString()
+        {
+            return $"Supplier Price = {SupplierPrice}, Sale Price = {SalePrice}, The Profited is {GetProfitMargin()}";
+        }
     }
 }

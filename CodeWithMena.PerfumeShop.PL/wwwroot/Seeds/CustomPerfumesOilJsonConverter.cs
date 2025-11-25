@@ -17,14 +17,6 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Seeds
         public decimal? SalePrice { get; set; }
 
 
-        public string? SupplierName { get; set; }
-        public ManufacturingCompany? ManufacturingCompany { get; set; }
-        public string? AlternativeName { get; set; }
-        public string? Code { get; set; }
-        public string? FashionHouse { get; set; }
-        public decimal? AvailableQuantityPerGram { get; set; }
-
-
         public required string Id { get; set; } = string.Empty;
         public required string CreatedBy { get; set; } = string.Empty;
         public string? CreatedOn { get; set; }
@@ -53,12 +45,6 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Seeds
                     PerfumePrice = new()
                     { SupplierPrice = p.SupplierPrice, SalePrice = p.SalePrice },
                     RatingOfSale = p.RatingOfSale,
-                    AlternativeName = p.AlternativeName,
-                    AvailableQuantityPerGram = p.AvailableQuantityPerGram,
-                    Code    = p.Code,
-                    SupplierName = p.SupplierName,
-                    FashionHouse    = p.FashionHouse,
-                    ManufacturingCompany = p.ManufacturingCompany
                 });
                 return perfumes.ToList();
             }
