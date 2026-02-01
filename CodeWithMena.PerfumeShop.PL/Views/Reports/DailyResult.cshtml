@@ -1,0 +1,16 @@
+@model CodeWithMena.PerfumeShop.PL.ViewModels.Reports.DailySummaryVm
+@{
+    ViewData["Title"] = "Daily Summary - " + Model.Date;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Daily Summary - @Model.Date.ToString("yyyy-MM-dd")</h1>
+<div class="card">
+    <div class="card-body">
+        <p><strong>Total Sales:</strong> @Model.TotalSales.ToString("N2") EGP</p>
+        <p><strong>Total Discount:</strong> @Model.TotalDiscount.ToString("N2") EGP</p>
+        <p><strong>Net Income:</strong> @Model.NetIncome.ToString("N2") EGP</p>
+        <p><strong>Invoice Count:</strong> @Model.InvoiceCount</p>
+    </div>
+</div>
+<a asp-action="Daily" class="btn btn-secondary mt-2">Back</a>

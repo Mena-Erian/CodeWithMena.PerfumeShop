@@ -4,6 +4,7 @@ using CodeWithMena.PerfumeShop.DAL.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
 {
     [DbContext(typeof(PerfumesShopDbContext))]
-    partial class PerfumesShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260201004021_AddPOSAndSalesEntities")]
+    partial class AddPOSAndSalesEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -388,7 +391,7 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BottleId")
+                    b.Property<Guid>("BottleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
@@ -424,10 +427,6 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
-
-                    b.Property<decimal?>("PerfumeOilGrams")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
 
                     b.Property<Guid?>("PerfumeOilId")
                         .HasColumnType("uniqueidentifier");
@@ -516,7 +515,8 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
                     b.HasOne("CodeWithMena.PerfumeShop.DAL.Entities.Bottle", "Bottle")
                         .WithMany("SaleItems")
                         .HasForeignKey("BottleId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("CodeWithMena.PerfumeShop.DAL.Entities.PerfumeOil", "PerfumeOil")
                         .WithMany()

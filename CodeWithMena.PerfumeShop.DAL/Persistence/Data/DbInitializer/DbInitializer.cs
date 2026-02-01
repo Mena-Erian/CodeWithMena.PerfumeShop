@@ -1,4 +1,4 @@
-﻿using CodeWithMena.PerfumeShop.DAL.Common.Enums;
+using CodeWithMena.PerfumeShop.DAL.Common.Enums;
 using CodeWithMena.PerfumeShop.DAL.Contracts;
 using CodeWithMena.PerfumeShop.DAL.Entities;
 using CodeWithMena.PerfumeShop.DAL.Persistence.Data.Seeds;
@@ -99,6 +99,47 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.DbInitializer
                     dbContext.SaveChanges();
                 }
             }
+
+            SeedBottles();
+            SeedAlcoholPrice();
+        }
+
+        private void SeedBottles()
+        {
+            if (dbContext.Bottles.Any()) return;
+
+            var sizes = new[] { 20, 30, 50, 100 };
+            var names = new[] { "20ml Bottle", "30ml Bottle", "50ml Bottle", "100ml Bottle" };
+            var salePrices = new decimal[] { 15m, 20m, 30m, 50m };
+            for (var i = 0; i < 4; i++)
+            {
+                dbContext.Bottles.Add(new Bottle
+                {
+                    Id = Guid.NewGuid(),
+                    Name = names[i],
+                    SizeMl = sizes[i],
+                    SalePrice = salePrices[i],
+                    IsActive = true,
+                    CreatedBy = "Seed",
+                    LastModifiedBy = "Seed"
+                });
+            }
+            dbContext.SaveChanges();
+        }
+
+        private void SeedAlcoholPrice()
+        {
+            if (dbContext.AlcoholPrices.Any()) return;
+
+            dbContext.AlcoholPrices.Add(new AlcoholPrice
+            {
+                Id = Guid.NewGuid(),
+                PricePerMl = 0.5m,
+                EffectiveFrom = DateTime.UtcNow.Date,
+                CreatedBy = "Seed",
+                LastModifiedBy = "Seed"
+            });
+            dbContext.SaveChanges();
         }
     }
 }
