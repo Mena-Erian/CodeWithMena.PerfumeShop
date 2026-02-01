@@ -1,4 +1,5 @@
 ﻿using CodeWithMena.PerfumeShop.BLL.Contracts;
+using CodeWithMena.PerfumeShop.DAL.Common.Enums;
 using CodeWithMena.PerfumeShop.DAL.Common.Repositories;
 using CodeWithMena.PerfumeShop.DAL.Entities;
 using System;
@@ -14,6 +15,9 @@ namespace CodeWithMena.PerfumeShop.BLL.Services.Perfumes
 
         public async Task<bool> DeletePerfumeOilAsync(Guid id)
             => (await perfumeOilRepo.DeleteByIdAsync(id)) > 0;
+
+        public async Task<ICollection<PerfumeOil>> FilterByFragrancyType(FragranceType fragranceType)
+           => await perfumeOilRepo.FilterBy(fragranceType);
         public async Task<ICollection<PerfumeOil>> GetAllPerfumesOilAsync()
             => await perfumeOilRepo.GetAllAsync();
 

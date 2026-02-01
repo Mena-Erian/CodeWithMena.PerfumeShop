@@ -8,57 +8,200 @@
 
 <div class="perfume-container">
 	<!-- Header Section -->
+	<!-- Header Section -->
 	<div class="perfume-header">
 		<div class="perfume-header-content">
-			<h1 class="perfume-title">Perfumes Oil</h1>
-			<a class="btn-perfume-add" asp-area="" asp-controller="PerfumesOil" asp-action="Create">
-				<span class="btn-icon">+</span>
-				<span class="btn-text">New Oil Perfume</span>
-			</a>
-		</div>
-	</div>
+			<div class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 w-100">
+				<!-- Title -->
+				<h1 class="perfume-title mb-0">Perfumes Oil</h1>
 
-	<!-- Perfumes Grid -->
-	<div class="perfume-grid">
+				<!-- Search Box -->
+				<div class="search-container flex-grow-1" style="max-width: 500px;">
+					<div class="search-wrapper">
+						<span class="search-icon">🔍</span>
+						<input type="text"
+							   id="searchInput"
+							   class="search-input"
+							   placeholder="Search perfumes by name..."
+							   onkeyup="filterPerfumes()" />
+						<button type="button" class="search-clear" id="clearSearch" onclick="clearSearch()" style="display: none;">
+							✕
+						</button>
+					</div>
+				</div>
+
+				<!-- Filter & Add Buttons Group -->
+				<div class="d-flex gap-2 align-items-center">
+					<!-- Filter Dropdown -->
+					<div class="dropdown">
+						<button class="btn btn-light dropdown-toggle shadow-sm"
+								type="button"
+								id="filterDropdown"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+								style="border-radius: 50px; padding: 0.75rem 1.5rem; font-weight: 600; color: #667eea; border: 2px solid rgba(102, 126, 234, 0.2);">
+							<span style="font-size: 1.25rem; margin-right: 0.5rem;">🔽</span>
+							@if (ViewData["CurrentFilter"] != null)
+							{
+								<span>@ViewData["CurrentFilter"] ✓</span>
+							}
+							else
+							{
+								<span>Filter</span>
+							}
+						</button>
+						<ul class="dropdown-menu shadow" aria-labelledby="filterDropdown" style="border-radius: 16px; border: none; padding: 0.5rem;">
+							<!-- Male -->
+							<li>
+								<a class="dropdown-item @((ViewData["CurrentFilter"]?.ToString() == "Male") ? "active" : "")"
+								   asp-controller="PerfumesOil"
+								   asp-action="Index"
+								   asp-route-fragranceType="Male"
+								   style="border-radius: 8px; padding: 0.75rem 1rem; font-weight: 500;">
+									<span style="font-size: 1.25rem; margin-right: 0.5rem;">👨</span>
+									Male
+									@if (ViewData["CurrentFilter"]?.ToString() == "Male")
+									{
+										<span class="badge bg-primary rounded-pill float-end">✓</span>
+									}
+								</a>
+							</li>
+
+							<!-- Female -->
+							<li>
+								<a class="dropdown-item @((ViewData["CurrentFilter"]?.ToString() == "Female") ? "active" : "")"
+								   asp-controller="PerfumesOil"
+								   asp-action="Index"
+								   asp-route-fragranceType="Female"
+								   style="border-radius: 8px; padding: 0.75rem 1rem; font-weight: 500;">
+									<span style="font-size: 1.25rem; margin-right: 0.5rem;">👩</span>
+									Female
+									@if (ViewData["CurrentFilter"]?.ToString() == "Female")
+									{
+										<span class="badge bg-primary rounded-pill float-end">✓</span>
+									}
+								</a>
+							</li>
+
+							<!-- Male & Female -->
+							<li>
+								<a class="dropdown-item @((ViewData["CurrentFilter"]?.ToString() == "3") ? "active" : "")"
+								   asp-controller="PerfumesOil"
+								   asp-action="Index"
+								   asp-route-fragranceType="3"
+								   style="border-radius: 8px; padding: 0.75rem 1rem; font-weight: 500;">
+									<span style="font-size: 1.25rem; margin-right: 0.5rem;">👥</span>
+									Male & Female
+									@if (ViewData["CurrentFilter"]?.ToString() == "3")
+									{
+										<span class="badge bg-primary rounded-pill float-end">✓</span>
+									}
+								</a>
+							</li>
+
+							<li><hr class="dropdown-divider" /></li>
+
+							<!-- East -->
+							<li>
+								<a class="dropdown-item @((ViewData["CurrentFilter"]?.ToString() == "East") ? "active" : "")"
+								   asp-controller="PerfumesOil"
+								   asp-action="Index"
+								   asp-route-fragranceType="East"
+								   style="border-radius: 8px; padding: 0.75rem 1rem; font-weight: 500;">
+									<span style="font-size: 1.25rem; margin-right: 0.5rem;">🕌</span>
+									East
+									@if (ViewData["CurrentFilter"]?.ToString() == "East")
+									{
+										<span class="badge bg-primary rounded-pill float-end">✓</span>
+									}
+								</a>
+							</li>
+
+							<!-- East Male -->
+							<li>
+								<a class="dropdown-item @((ViewData["CurrentFilter"]?.ToString() == "5") ? "active" : "")"
+								   asp-controller="PerfumesOil"
+								   asp-action="Index"
+								   asp-route-fragranceType="5"
+								   style="border-radius: 8px; padding: 0.75rem 1rem; font-weight: 500;">
+									<span style="font-size: 1.25rem; margin-right: 0.5rem;">🕌👨</span>
+									East Male
+									@if (ViewData["CurrentFilter"]?.ToString() == "5")
+									{
+										<span class="badge bg-primary rounded-pill float-end">✓</span>
+									}
+								</a>
+							</li>
+
+							<!-- East Female -->
+							<li>
+								<a class="dropdown-item @((ViewData["CurrentFilter"]?.ToString() == "6") ? "active" : "")"
+								   asp-controller="PerfumesOil"
+								   asp-action="Index"
+								   asp-route-fragranceType="6"
+								   style="border-radius: 8px; padding: 0.75rem 1rem; font-weight: 500;">
+									<span style="font-size: 1.25rem; margin-right: 0.5rem;">🕌👩</span>
+									East Female
+									@if (ViewData["CurrentFilter"]?.ToString() == "6")
+									{
+										<span class="badge bg-primary rounded-pill float-end">✓</span>
+									}
+								</a>
+							</li>
+
+							<li><hr class="dropdown-divider" /></li>
+
+							<!-- Other -->
+							<li>
+								<a class="dropdown-item @((ViewData["CurrentFilter"]?.ToString() == "Other") ? "active" : "")"
+								   asp-controller="PerfumesOil"
+								   asp-action="Index"
+								   asp-route-fragranceType="Other"
+								   style="border-radius: 8px; padding: 0.75rem 1rem; font-weight: 500;">
+									<span style="font-size: 1.25rem; margin-right: 0.5rem;">✨</span>
+									Other
+									@if (ViewData["CurrentFilter"]?.ToString() == "Other")
+									{
+										<span class="badge bg-primary rounded-pill float-end">✓</span>
+									}
+								</a>
+							</li>
+
+							<!-- Clear Filter -->
+							@if (ViewData["CurrentFilter"] != null)
+							{
+								<li><hr class="dropdown-divider" /></li>
+								<li>
+									<a class="dropdown-item text-danger"
+									   asp-controller="PerfumesOil"
+									   asp-action="Index"
+									   style="border-radius: 8px; padding: 0.75rem 1rem; font-weight: 600;">
+										<span style="font-size: 1.25rem; margin-right: 0.5rem;">🔄</span>
+										Clear Filter
+									</a>
+								</li>
+							}
+						</ul>
+					</div>
+
+					<!-- Add New Button -->
+					<a class="btn-perfume-add" asp-area="" asp-controller="PerfumesOil" asp-action="Create">
+						<span class="btn-icon">+</span>
+						<span class="btn-text">New</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>   <div class="perfume-grid">
 		@foreach (var perfume in Model)
 		{
 			<div class="perfume-card" onclick="viewDetails('@perfume.Id')">
 				<input type="hidden" class="perfume-id" value="@perfume.Id" />
 
-				<div class="perfume-card-header">
-					<h3 class="perfume-name">@perfume.Name</h3>
-					<div class="perfume-badge">
-						@if (perfume.AvailableQuantityPerGram is not null && perfume.AvailableQuantityPerGram > 0)
-						{
-							<span class="badge-success">In Stock</span>
-						}
-						else
-						{
-							<span class="badge-danger">Out of Stock</span>
-						}
-					</div>
-				</div>
-
 				<div class="perfume-card-body">
 					<div class="perfume-info-item">
-						<span class="info-label">Available Quantity</span>
-						<span class="info-value-quantity">
-							@if (perfume.AvailableQuantityPerGram is not null)
-							{
-								<span>@perfume.AvailableQuantityPerGram <small>grams</small></span>
-							}
-							else
-							{
-								<span class="text-muted">Not Available</span>
-							}
-						</span>
-					</div>
-
-					<div class="perfume-divider"></div>
-
-					<div class="perfume-info-item">
-						<span class="info-label">Sale Price Per Gram</span>
-						<span class="info-value-price">
+						<h3 class="perfume-name">@perfume.Name</h3>
+						<span class="info-value-supplier">
 							@if (perfume.PerfumePrice?.SalePrice is not null)
 							{
 								<span>@perfume.PerfumePrice.SalePrice.Value.ToString("C")</span>
@@ -68,17 +211,25 @@
 								<span class="text-muted">N/A</span>
 							}
 						</span>
+
+						<span class="info-value-price">
+							@if (perfume.PerfumePrice?.SupplierPrice is not null)
+							{
+								<span>@perfume.PerfumePrice.SupplierPrice.Value.ToString("C")</span>
+							}
+							else
+							{
+								<span class="text-muted">N/A</span>
+							}
+						</span>
 					</div>
 				</div>
 
-				<div class="perfume-card-footer">
-					<button type="button" class="btn-view-details" onclick="event.stopPropagation(); viewDetails('@perfume.Id')">
-						View Details
-					</button>
-				</div>
+
 			</div>
 		}
 	</div>
+
 
 	<!-- Empty State -->
 	@if (!Model.Any())
@@ -99,5 +250,61 @@
 	function viewDetails(id) {
 		// Navigate to details page
 		window.location.href = '/PerfumesOil/Details/' + id;
+	}
+	function filterPerfumes() {
+		const input = document.getElementById('searchInput');
+		const filter = input.value.toLowerCase();
+		const grid = document.querySelector('.perfume-grid');
+		const cards = grid.getElementsByClassName('perfume-card');
+		const clearBtn = document.getElementById('clearSearch');
+
+		// Show/hide clear button
+		clearBtn.style.display = input.value ? 'flex' : 'none';
+
+		let visibleCount = 0;
+
+		for (let i = 0; i < cards.length; i++) {
+			const name = cards[i].querySelector('.perfume-name').textContent;
+			if (name.toLowerCase().indexOf(filter) > -1) {
+				cards[i].style.display = '';
+				visibleCount++;
+			} else {
+				cards[i].style.display = 'none';
+			}
+		}
+
+		// Show no results message if needed
+		showNoResults(visibleCount === 0 && input.value !== '');
+	}
+
+	function clearSearch() {
+		const input = document.getElementById('searchInput');
+		input.value = '';
+		filterPerfumes();
+		input.focus();
+	}
+
+	function showNoResults(show) {
+		let noResultsDiv = document.getElementById('noResults');
+
+		if (show) {
+			if (!noResultsDiv) {
+				noResultsDiv = document.createElement('div');
+				noResultsDiv.id = 'noResults';
+				noResultsDiv.className = 'no-results';
+				noResultsDiv.innerHTML = `
+					<div class="no-results-icon">🔍</div>
+					<h3 class="no-results-title">No Perfumes Found</h3>
+					<p class="no-results-text">Try adjusting your search terms</p>
+				`;
+				document.querySelector('.perfume-grid').parentNode.insertBefore(
+					noResultsDiv,
+					document.querySelector('.perfume-grid').nextSibling
+				);
+			}
+			noResultsDiv.style.display = 'block';
+		} else if (noResultsDiv) {
+			noResultsDiv.style.display = 'none';
+		}
 	}
 </script>

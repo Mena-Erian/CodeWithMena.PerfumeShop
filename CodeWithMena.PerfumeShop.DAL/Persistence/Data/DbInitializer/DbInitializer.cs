@@ -1,4 +1,5 @@
-﻿using CodeWithMena.PerfumeShop.DAL.Contracts;
+using CodeWithMena.PerfumeShop.DAL.Common.Enums;
+using CodeWithMena.PerfumeShop.DAL.Contracts;
 using CodeWithMena.PerfumeShop.DAL.Entities;
 using CodeWithMena.PerfumeShop.DAL.Persistence.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,110 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.DbInitializer
                     dbContext.SaveChanges();
                 }
             }
+            if (!dbContext.PerfumeOils.Where(p => p.ManufacturingCompany == ManufacturingCompany.ESSENCES_PERFUMES).Any())
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Seeds", "EssencePerfumePriceList.csv");
+                var essencePerfumesStr = File.ReadAllLines(path, Encoding.UTF8);
+
+                var perfumes = new List<PerfumeOil>();
+
+                foreach (var line in essencePerfumesStr.Skip(1))
+                {
+                    var parts = line.Split(",");
+                    perfumes.Add(new PerfumeOil()
+                    {
+                        Id = Guid.NewGuid(),
+                        CreatedBy = "ExcelFileDataSeeding",
+                        LastModifiedBy = "",
+                        Name = parts[4],
+                        Description = "ESSENCES_PERFUMES,SeedingFromExcelFile",
+                        FragranceFamily = null,
+                        FragranceType = GetFragranceType(parts[5]),
+                        PerfumePrice = new()
+                        {
+                            SupplierPrice = decimal.Parse(parts[1]) / 1000,
+                            SalePrice = getAudiencePrice(decimal.Parse(parts[1]))
+                        },
+                        RatingOfSale = 1,
+                        AlternativeName = parts[0],
+                        AvailableQuantityPerGram = null,
+                        Code = parts[2],
+                        SupplierName = "",
+                        FashionHouse = parts[3],
+                        ManufacturingCompany = ManufacturingCompany.ESSENCES_PERFUMES
+                    });
+                }
+                static FragranceType GetFragranceType(string fragranceType)
+                {
+                    var result = FragranceType.Other;
+                    Enum.TryParse<FragranceType>(fragranceType, out result);
+                    return result;
+                }
+                static decimal getAudiencePrice(decimal providerPrice)
+                {
+                    providerPrice = providerPrice / 1000;
+
+
+                    if (providerPrice < 5)
+                        return 5;
+                    if (providerPrice >= 5 && providerPrice < 6)
+                        return 6.5m;
+                    if (providerPrice >= 6 && providerPrice < 7)
+                        return 7.5m;
+                    if (providerPrice >= 7 && providerPrice < 8)
+                        return 9m;
+                    if (providerPrice >= 8 && providerPrice < 9)
+                        return 10m;
+
+                    return 15m;
+                }
+                if (perfumes?.Count > 0)
+                {
+                    dbContext.PerfumeOils.AddRange(perfumes);
+                    dbContext.SaveChanges();
+                }
+            }
+
+            SeedBottles();
+            SeedAlcoholPrice();
+        }
+
+        private void SeedBottles()
+        {
+            if (dbContext.Bottles.Any()) return;
+
+            var sizes = new[] { 20, 30, 50, 100 };
+            var names = new[] { "20ml Bottle", "30ml Bottle", "50ml Bottle", "100ml Bottle" };
+            var salePrices = new decimal[] { 15m, 20m, 30m, 50m };
+            for (var i = 0; i < 4; i++)
+            {
+                dbContext.Bottles.Add(new Bottle
+                {
+                    Id = Guid.NewGuid(),
+                    Name = names[i],
+                    SizeMl = sizes[i],
+                    SalePrice = salePrices[i],
+                    IsActive = true,
+                    CreatedBy = "Seed",
+                    LastModifiedBy = "Seed"
+                });
+            }
+            dbContext.SaveChanges();
+        }
+
+        private void SeedAlcoholPrice()
+        {
+            if (dbContext.AlcoholPrices.Any()) return;
+
+            dbContext.AlcoholPrices.Add(new AlcoholPrice
+            {
+                Id = Guid.NewGuid(),
+                PricePerMl = 0.5m,
+                EffectiveFrom = DateTime.UtcNow.Date,
+                CreatedBy = "Seed",
+                LastModifiedBy = "Seed"
+            });
+            dbContext.SaveChanges();
         }
     }
 }

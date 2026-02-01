@@ -1,0 +1,43 @@
+@model ICollection<CodeWithMena.PerfumeShop.PL.ViewModels.Bottles.BottleListVm>
+@{
+    ViewData["Title"] = "Bottles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Bottles</h1>
+        <a asp-action="Create" class="btn btn-primary">Add Bottle</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Size (ml)</th>
+                <th>Sale Price</th>
+                <th>Active</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model)
+            {
+                <tr>
+                    <td>@b.Name</td>
+                    <td>@b.SizeMl</td>
+                    <td>@b.SalePrice.ToString("N2") EGP</td>
+                    <td>@(b.IsActive ? "Yes" : "No")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@b.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@b.Id" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this bottle?');">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (!Model.Any())
+    {
+        <p class="text-muted">No bottles. <a asp-action="Create">Add one</a>.</p>
+    }
+</div>

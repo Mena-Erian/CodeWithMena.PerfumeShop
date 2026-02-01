@@ -1,4 +1,5 @@
 using CodeWithMena.PerfumeShop.PL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,10 +9,10 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
     {
         public IActionResult Index()
         {
-             return RedirectToAction(actionName:"Index", "PerfumesOil");
+            return RedirectToAction(actionName: "Create", "POS");
         }
 
-
+        [AllowAnonymous]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

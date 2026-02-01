@@ -1,0 +1,167 @@
+@{
+    ViewData["Title"] = "Sign In";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var returnUrl = ViewData["ReturnUrl"] as string ?? Url.Content("~/");
+}
+
+<div class="login-page">
+    <div class="login-backdrop"></div>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-card-header">
+                <div class="login-icon" aria-hidden="true">✦</div>
+                <h1 class="login-title">The King Of Perfumes</h1>
+                <p class="login-subtitle">Sign in to your account</p>
+            </div>
+            <div class="login-card-body">
+                <form asp-action="Login" method="post" asp-route-returnUrl="@returnUrl" class="login-form">
+                    <div asp-validation-summary="All" class="login-validation"></div>
+                    <div class="login-field">
+                        <label for="email" class="login-label">Email</label>
+                        <input type="email" name="email" id="email" class="login-input" placeholder="Enter your email" required autocomplete="email" />
+                    </div>
+                    <div class="login-field">
+                        <label for="password" class="login-label">Password</label>
+                        <input type="password" name="password" id="password" class="login-input" placeholder="Enter your password" required autocomplete="current-password" />
+                    </div>
+                    <input type="hidden" name="returnUrl" value="@returnUrl" />
+                    <button type="submit" class="login-submit">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.login-page {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem 1rem;
+}
+.login-backdrop {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #533483 100%);
+    z-index: -1;
+}
+.login-backdrop::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(102, 126, 234, 0.25), transparent),
+                radial-gradient(ellipse 60% 40% at 100% 100%, rgba(118, 75, 162, 0.2), transparent);
+    pointer-events: none;
+}
+.login-container {
+    width: 100%;
+    max-width: 420px;
+}
+.login-card {
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+.login-card-header {
+    padding: 2.5rem 2rem 1.5rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(102, 126, 234, 0.08) 0%, transparent 100%);
+}
+.login-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.35);
+}
+.login-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.02em;
+}
+.login-subtitle {
+    font-size: 0.9375rem;
+    color: #64748b;
+    margin: 0;
+}
+.login-card-body {
+    padding: 1.5rem 2rem 2rem;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+.login-validation {
+    color: #dc2626;
+    font-size: 0.875rem;
+    padding: 0.75rem 1rem;
+    background: #fef2f2;
+    border-radius: 12px;
+    list-style: none;
+    margin: 0;
+}
+.login-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+.login-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+}
+.login-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fff;
+    color: #1e293b;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.login-input::placeholder {
+    color: #94a3b8;
+}
+.login-input:hover {
+    border-color: #cbd5e1;
+}
+.login-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+.login-submit {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
+}
+.login-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.45);
+}
+.login-submit:active {
+    transform: translateY(0);
+}
+</style>
