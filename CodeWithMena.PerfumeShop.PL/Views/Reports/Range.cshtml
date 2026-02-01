@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Range Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Range Summary</h1>
+<form method="get" asp-action="RangeResult" class="row g-2 mb-4">
+    <div class="col-auto">
+        <label for="from" class="col-form-label">From</label>
+    </div>
+    <div class="col-auto">
+        <input type="date" name="from" id="from" class="form-control" value="@DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="col-auto">
+        <label for="to" class="col-form-label">To</label>
+    </div>
+    <div class="col-auto">
+        <input type="date" name="to" id="to" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Show</button>
+    </div>
+</form>
+<p class="text-muted">Submit to view summary for the date range.</p>

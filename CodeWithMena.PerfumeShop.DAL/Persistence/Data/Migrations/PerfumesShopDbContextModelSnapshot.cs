@@ -22,14 +22,243 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.AlcoholPrice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDate()");
+
+                    b.Property<DateTime>("EffectiveFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("LastModifiedOn")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GETUTCDate()");
+
+                    b.Property<decimal>("PricePerMl")
+                        .HasPrecision(10, 3)
+                        .HasColumnType("decimal(10,3)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AlcoholPrices", (string)null);
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.Bottle", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDate()");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("LastModifiedOn")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GETUTCDate()");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("SalePrice")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<int>("SizeMl")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Bottles", (string)null);
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.DailySummary", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDate()");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<int>("InvoiceCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("LastModifiedOn")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GETUTCDate()");
+
+                    b.Property<decimal>("NetIncome")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("decimal(12,2)");
+
+                    b.Property<decimal>("TotalDiscount")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("decimal(12,2)");
+
+                    b.Property<decimal>("TotalSales")
+                        .HasPrecision(12, 2)
+                        .HasColumnType("decimal(12,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Date")
+                        .IsUnique();
+
+                    b.ToTable("DailySummaries", (string)null);
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.MixedPerfume", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("LastModifiedOn")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GETUTCDate()");
+
+                    b.Property<string>("MixCode")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
+
+                    b.Property<Guid>("SaleItemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MixCode")
+                        .IsUnique();
+
+                    b.HasIndex("SaleItemId")
+                        .IsUnique();
+
+                    b.ToTable("MixedPerfumes", (string)null);
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.MixedPerfumeItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDate()");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("LastModifiedOn")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GETUTCDate()");
+
+                    b.Property<Guid>("MixedPerfumeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("MlUsed")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<Guid>("PerfumeOilId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MixedPerfumeId");
+
+                    b.HasIndex("PerfumeOilId");
+
+                    b.ToTable("MixedPerfumeItems", (string)null);
+                });
+
             modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.PerfumeOil", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AlternativeName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<decimal?>("AvailableQuantityPerGram")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -43,6 +272,10 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("FashionHouse")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("FragranceFamily")
                         .HasMaxLength(100)
@@ -62,6 +295,10 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasComputedColumnSql("GETUTCDate()");
 
+                    b.Property<string>("ManufacturingCompany")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -70,12 +307,180 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
                     b.Property<int>("RatingOfSale")
                         .HasColumnType("int");
 
+                    b.Property<string>("SupplierName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
+                    b.ToTable("PerfumeOils");
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.Sale", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDate()");
+
+                    b.Property<decimal?>("DiscountAmount")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal?>("DiscountPercent")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<string>("InvoiceNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("LastModifiedOn")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GETUTCDate()");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("SaleDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Subtotal")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("TotalAfterDiscount")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvoiceNumber")
                         .IsUnique();
 
-                    b.ToTable("PerfumeOils");
+                    b.HasIndex("SaleDateTime");
+
+                    b.ToTable("Sales", (string)null);
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.SaleItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BottleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDate()");
+
+                    b.Property<bool>("IsMixed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("LastModifiedOn")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasComputedColumnSql("GETUTCDate()");
+
+                    b.Property<decimal>("LineTotal")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<string>("ManufacturingCompanySnapshot")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("NameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<decimal?>("PerfumeOilGrams")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<Guid?>("PerfumeOilId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("SaleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BottleId");
+
+                    b.HasIndex("PerfumeOilId");
+
+                    b.HasIndex("SaleId");
+
+                    b.ToTable("SaleItems", (string)null);
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.MixedPerfume", b =>
+                {
+                    b.HasOne("CodeWithMena.PerfumeShop.DAL.Entities.SaleItem", "SaleItem")
+                        .WithOne("MixedPerfume")
+                        .HasForeignKey("CodeWithMena.PerfumeShop.DAL.Entities.MixedPerfume", "SaleItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SaleItem");
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.MixedPerfumeItem", b =>
+                {
+                    b.HasOne("CodeWithMena.PerfumeShop.DAL.Entities.MixedPerfume", "MixedPerfume")
+                        .WithMany("MixedPerfumeItems")
+                        .HasForeignKey("MixedPerfumeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CodeWithMena.PerfumeShop.DAL.Entities.PerfumeOil", "PerfumeOil")
+                        .WithMany()
+                        .HasForeignKey("PerfumeOilId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("MixedPerfume");
+
+                    b.Navigation("PerfumeOil");
                 });
 
             modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.PerfumeOil", b =>
@@ -104,6 +509,51 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Migrations
                         });
 
                     b.Navigation("PerfumePrice");
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.SaleItem", b =>
+                {
+                    b.HasOne("CodeWithMena.PerfumeShop.DAL.Entities.Bottle", "Bottle")
+                        .WithMany("SaleItems")
+                        .HasForeignKey("BottleId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CodeWithMena.PerfumeShop.DAL.Entities.PerfumeOil", "PerfumeOil")
+                        .WithMany()
+                        .HasForeignKey("PerfumeOilId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CodeWithMena.PerfumeShop.DAL.Entities.Sale", "Sale")
+                        .WithMany("SaleItems")
+                        .HasForeignKey("SaleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bottle");
+
+                    b.Navigation("PerfumeOil");
+
+                    b.Navigation("Sale");
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.Bottle", b =>
+                {
+                    b.Navigation("SaleItems");
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.MixedPerfume", b =>
+                {
+                    b.Navigation("MixedPerfumeItems");
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.Sale", b =>
+                {
+                    b.Navigation("SaleItems");
+                });
+
+            modelBuilder.Entity("CodeWithMena.PerfumeShop.DAL.Entities.SaleItem", b =>
+                {
+                    b.Navigation("MixedPerfume");
                 });
 #pragma warning restore 612, 618
         }

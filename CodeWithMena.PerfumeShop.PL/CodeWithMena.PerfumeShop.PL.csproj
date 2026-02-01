@@ -7,6 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Seeds\CustomPerfumesOilJsonConverter.cs" />
+    <Content Remove="wwwroot\Seeds\EssencePerfumePriceList.csv" />
+    <Content Remove="wwwroot\Seeds\PerfumesOil.json" />
+    <Content Remove="wwwroot\Seeds\PerfumesOil2.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="wwwroot\Seeds\CustomPerfumesOilJsonConverter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Seeds\EssencePerfumePriceList.csv" />
+    <None Include="wwwroot\Seeds\PerfumesOil.json" />
+    <None Include="wwwroot\Seeds\PerfumesOil2.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

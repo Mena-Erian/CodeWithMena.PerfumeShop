@@ -1,0 +1,964 @@
+# CodeWithMena.PerfumeShop - Project Documentation
+
+## Project Overview
+**CodeWithMena.PerfumeShop** is a comprehensive ASP.NET Core MVC web application designed to manage a perfume oil shop inventory. The application follows a clean 3-tier architecture pattern with clear separation of concerns between Presentation, Business Logic, and Data Access layers.
+
+**Project Type:** E-commerce Inventory Management System  
+**Domain:** Perfume & Fragrance Retail  
+**Architecture Pattern:** 3-Tier Architecture (PL → BLL → DAL)
+
+---
+
+## Technical Stack
+
+### Framework & Runtime
+- **.NET Version:** .NET 9.0
+- **Project Type:** ASP.NET Core MVC Web Application
+- **Language:** C# with nullable reference types enabled
+- **Implicit Usings:** Enabled across all projects
+
+### Database & ORM
+- **Database:** Microsoft SQL Server
+- **ORM:** Entity Framework Core 9.0.10
+- **Migration Strategy:** Code-First with automatic migrations on startup
+- **Database Provider:** `Microsoft.EntityFrameworkCore.SqlServer`
+
+### Development Tools
+- **Scaffolding:** Microsoft.VisualStudio.Web.CodeGeneration.Design 9.0.0
+- **EF Tools:** Microsoft.EntityFrameworkCore.Tools 9.0.10
+- **Library Manager:** LibMan (configured but no libraries currently)
+
+---
+
+## Solution Structure
+
+The solution consists of three main projects:
+
+### 1. **CodeWithMena.PerfumeShop.PL** (Presentation Layer)
+**Location:** `CodeWithMena.PerfumeShop.PL/`  
+**Type:** ASP.NET Core MVC Web Application  
+**Responsibilities:**
+- User interface rendering (Razor Views)
+- HTTP request handling (Controllers)
+- View models and DTOs for presentation
+- Static assets (CSS, JavaScript, images)
+- Database initialization on startup
+
+**Key Components:**
+- **Controllers:**
+  - `PerfumesOilController` - CRUD operations for perfume oils
+  - `HomeController` - Home page and error handling
+  
+- **ViewModels:**
+  - `PerfumeOilCreateDto` - Data transfer object for creating perfumes
+  - `PerfumeOilEditDto` - Data transfer object for editing perfumes
+  - `ErrorViewModel` - Error page model
+
+- **Views:**
+  - `PerfumesOil/Index.cshtml` - List all perfumes with filtering
+  - `PerfumesOil/Create.cshtml` - Create new perfume form
+  - `PerfumesOil/Edit.cshtml` - Edit existing perfume form
+  - `PerfumesOil/Details.cshtml` - View perfume details
+  - `Home/` - Home page views
+  - `Shared/` - Shared layout and partial views
+
+- **Static Assets:**
+  - `wwwroot/css/` - Stylesheets
+  - `wwwroot/js/` - JavaScript files
+  - `wwwroot/lib/` - Third-party libraries
+  - `wwwroot/Seeds/` - Seed data files (JSON, CSV)
+
+**Dependencies:**
+- References `CodeWithMena.PerfumeShop.BLL`
+
+### 2. **CodeWithMena.PerfumeShop.BLL** (Business Logic Layer)
+**Location:** `CodeWithMena.PerfumeShop.BLL/`  
+**Type:** Class Library  
+**Responsibilities:**
+- Business logic implementation
+- Service layer abstraction
+- Data transformation and validation
+- Business rules enforcement
+
+**Key Components:**
+- **Services:**
+  - `PerfumeOilService` - Business logic for perfume oil operations
+  
+- **Contracts (Interfaces):**
+  - `IPerfumeOilService` - Service contract for perfume oil operations
+
+- **Folders (Planned):**
+  - `Mapping/` - Object mapping configurations (empty)
+  - `ModelsDtos/` - Business DTOs (empty)
+
+**Dependencies:**
+- References `CodeWithMena.PerfumeShop.DAL`
+
+### 3. **CodeWithMena.PerfumeShop.DAL** (Data Access Layer)
+**Location:** `CodeWithMena.PerfumeShop.DAL/`  
+**Type:** Class Library  
+**Responsibilities:**
+- Database context and entity configurations
+- Repository pattern implementation
+- Data access abstraction
+- Database migrations
+- Seed data management
+
+**Key Components:**
+- **Entities:**
+  - `PerfumeOil` - Main perfume entity
+  - `BaseEntity<TKey>` - Base entity with audit fields
+  - `BasePerfume<TPerfume, TKey>` - Base perfume entity
+  - `BasePerfumePrice` - Pricing information with profit calculation
+
+- **Repositories:**
+  - `PerfumeOilRepositories` - Data access for perfume oils
+  - `BasePerfumeRepository<TPerfume, TKey>` - Generic perfume repository
+  - `BaseRepository<TEntity, TKey>` - Generic repository pattern
+
+- **Contracts (Interfaces):**
+  - `IPerfumeOilRepositories` - Repository contract
+  - `IBasePerfumeRepository` - Base perfume repository contract
+  - `IBaseRepository` - Generic repository contract
+  - `IPerfume` - Perfume entity contract
+  - `IBasePerfumePrice` - Price entity contract
+  - `IDbInitializer` - Database initialization contract
+
+- **Enums:**
+  - `FragranceType` - Male, Female, East, Other (Flags enum)
+  - `FragranceFamily` - Sugery, Floral, Citrus, Woody, Oriental, Fresh, Other
+  - `ManufacturingCompany` - ESSENCES_PERFUMES, IPRA, APA
+  - `ProductionCategory` - (exists but not detailed)
+  - `UnitType` - (exists but not detailed)
+
+- **Database:**
+  - `PerfumesShopDbContext` - EF Core DbContext
+  - `DbInitializer` - Database initialization and seeding
+  - Entity configurations using Fluent API
+  - Migrations for schema versioning
+
+**Dependencies:**
+- None (base layer)
+
+---
+
+## Domain Model
+
+### PerfumeOil Entity
+The core entity representing a perfume oil product.
+
+**Inheritance Hierarchy:**
+```
+BaseEntity<Guid>
+  └── BasePerfume<PerfumeOil, Guid>
+        └── PerfumeOil
+```
+
+**Table Name:** `PerfumeOils` (DbSet in PerfumesShopDbContext)
+
+#### Properties with Attributes
+
+##### Inherited from BaseEntity<Guid>
+
+**`Id` (Guid)**
+- **Type:** Primary Key
+- **Required:** Yes
+- **Database Configuration:** Primary key constraint
+- **Description:** Unique identifier for the perfume oil
+
+**`CreatedBy` (string)**
+- **Type:** varchar(50)
+- **Required:** Yes (code annotation)
+- **Max Length:** 50 characters
+- **Database Configuration:** Column type set via Fluent API
+- **Description:** Username/identifier of the creator
+
+**`CreatedOn` (DateTime)**
+- **Type:** DateTime
+- **Required:** Yes (auto-generated)
+- **Database Configuration:** Default value `GETUTCDATE()` (SQL Server function)
+- **Description:** UTC timestamp when record was created
+
+**`LastModifiedBy` (string)**
+- **Type:** varchar(50)
+- **Required:** Yes (code annotation)
+- **Max Length:** 50 characters
+- **Database Configuration:** Column type set via Fluent API
+- **Description:** Username/identifier of last modifier
+
+**`LastModifiedOn` (DateTime)**
+- **Type:** DateTime (Computed Column)
+- **Required:** Yes (auto-generated)
+- **Database Configuration:** Computed column using `GETUTCDATE()` (SQL Server function)
+- **Description:** UTC timestamp when record was last modified
+
+##### Inherited from BasePerfume<PerfumeOil, Guid>
+
+**`Name` (string)**
+- **Data Annotation:** `[MinLength(2)]` (in DTO)
+- **Required:** Yes
+- **Max Length:** 100 characters
+- **Database Configuration:** 
+  - `IsRequired()`
+  - `HasMaxLength(100)`
+- **Index:** Previously had unique index (now removed - see migration 20251125204122)
+- **Description:** Perfume product name
+
+**`Description` (string)**
+- **Required:** No (nullable)
+- **Max Length:** 500 characters
+- **Database Configuration:**
+  - `IsRequired(false)`
+  - `HasMaxLength(500)`
+- **Description:** Detailed product description
+
+**`FragranceType` (FragranceType enum)**
+- **Required:** Yes
+- **Enum Values:** Male=1, Female=2, East=4, Other=7 (Flags enum)
+- **Database Storage:** Stored as string (varchar)
+- **Max Length:** 100 characters
+- **Database Configuration:**
+  - `IsRequired()`
+  - `HasConversion()` - Enum to string conversion
+  - `HasMaxLength(100)`
+- **Description:** Target audience/fragrance category
+
+**`FragranceFamily` (FragranceFamily enum)**
+- **Required:** No (nullable)
+- **Enum Values:** Sugery=1, Floral=2, Citrus=3, Woody=4, Oriental=5, Fresh=6, Other=7
+- **Database Storage:** Stored as string (varchar)
+- **Max Length:** 100 characters
+- **Database Configuration:**
+  - `IsRequired(false)`
+  - `HasConversion()` - Enum to string conversion
+  - `HasMaxLength(100)`
+- **Description:** Scent family classification
+
+**`RatingOfSale` (int)**
+- **Data Annotation:** `[Range(1, 10)]` (in DTO)
+- **Required:** Yes
+- **Database Configuration:** `IsRequired()`
+- **Validation:** 1-10 range enforced in DTO layer
+- **Default Value:** 0 (in DTO)
+- **Description:** Sales popularity or quality rating
+
+**`PerfumePrice` (BasePerfumePrice - Owned Entity)**
+- **Required:** No (nullable)
+- **Database Configuration:** Configured as owned entity (complex type)
+- **Columns:** Flattened into parent table
+  - `SupplierPrice` - decimal(10,3), nullable
+  - `SalePrice` - decimal(10,3), nullable
+- **Description:** Pricing information with profit calculation
+
+##### PerfumeOil-Specific Properties
+
+**`SupplierName` (string)**
+- **Required:** No (nullable)
+- **Max Length:** 50 characters
+- **Database Configuration:**
+  - `IsRequired(false)`
+  - `HasMaxLength(50)`
+- **Description:** Name of the perfume supplier
+
+**`ManufacturingCompany` (ManufacturingCompany enum)**
+- **Required:** No (nullable)
+- **Enum Values:** ESSENCES_PERFUMES=1, IPRA=2, APA=3
+- **Database Storage:** Stored as string (varchar)
+- **Max Length:** 50 characters
+- **Database Configuration:**
+  - `IsRequired(false)`
+  - `HasConversion()` - Enum to string conversion
+  - `HasMaxLength(50)`
+- **Description:** Manufacturing company identifier
+
+**`AlternativeName` (string)**
+- **Required:** No (nullable)
+- **Max Length:** 50 characters
+- **Database Configuration:**
+  - `IsRequired(false)`
+  - `HasMaxLength(50)`
+- **Description:** Alternative or localized product name
+
+**`Code` (string)**
+- **Required:** No (nullable)
+- **Max Length:** 25 characters
+- **Database Configuration:**
+  - `IsRequired(false)`
+  - `HasMaxLength(25)`
+- **Description:** Product code or SKU
+
+**`FashionHouse` (string)**
+- **Required:** No (nullable)
+- **Max Length:** 25 characters
+- **Database Configuration:**
+  - `IsRequired(false)`
+  - `HasMaxLength(25)`
+- **Description:** Fashion house or brand name
+
+**`AvailableQuantityPerGram` (decimal)**
+- **Required:** No (nullable)
+- **Database Configuration:** `IsRequired(false)`
+- **Precision:** Not explicitly set (uses SQL Server default)
+- **Description:** Available stock quantity in grams
+
+---
+
+### BasePerfumePrice (Owned Entity / Complex Type)
+Pricing information stored as part of the parent entity (not a separate table).
+
+**Ownership:** Configured as owned entity via `OwnsOne()` in BasePerfumeConfiguration
+
+#### Properties with Attributes
+
+**`SupplierPrice` (decimal)**
+- **Required:** No (nullable)
+- **Precision:** decimal(10, 3) - 10 total digits, 3 decimal places
+- **Database Configuration:**
+  - `HasPrecision(10, 3)`
+  - `IsRequired(false)`
+  - `HasColumnName("SupplierPrice")`
+- **Description:** Cost price from supplier per gram
+
+**`SalePrice` (decimal)**
+- **Required:** No (nullable)
+- **Precision:** decimal(10, 3) - 10 total digits, 3 decimal places
+- **Database Configuration:**
+  - `HasPrecision(10, 3)`
+  - `IsRequired(false)`
+  - `HasColumnName("SalePrice")`
+- **Description:** Selling price to customer per gram
+
+#### Methods
+
+**`GetProfitMargin()` (virtual decimal?)**
+- **Returns:** Profit margin (SalePrice - SupplierPrice) or null if either price is null
+- **Description:** Calculates profit per gram
+
+**Equality Operators**
+- `Equals(object? obj)` - Overridden for value comparison
+- `GetHashCode()` - Overridden based on SupplierPrice
+- `operator ==` - Compares both SupplierPrice and SalePrice
+- `operator !=` - Negation of equality operator
+- `ToString()` - Returns formatted string with prices and profit
+
+---
+
+### BaseEntity<TKey> (Abstract Base Class)
+Generic base entity providing audit fields for all entities.
+
+**Generic Parameter:** `TKey` - Type of primary key (Guid for PerfumeOil)
+
+#### Properties with Attributes
+
+**`Id` (TKey)**
+- **Required:** Yes (code annotation)
+- **Database Configuration:** Configured as primary key in BaseEntityConfiguration
+- **Description:** Generic primary key
+
+**`CreatedBy` (string)**
+- **Type:** varchar(50)
+- **Required:** Yes (code annotation)
+- **Database Configuration:** `HasColumnType("varchar(50)")`
+- **Description:** Audit field for creator
+
+**`CreatedOn` (DateTime)**
+- **Required:** Yes (auto-generated)
+- **Database Configuration:** `HasDefaultValueSql("GETUTCDATE()")`
+- **Description:** Audit field for creation timestamp
+
+**`LastModifiedBy` (string)**
+- **Type:** varchar(50)
+- **Required:** Yes (code annotation)
+- **Database Configuration:** `HasColumnType("varchar(50)")`
+- **Description:** Audit field for last modifier
+
+**`LastModifiedOn` (DateTime)**
+- **Required:** Yes (auto-generated)
+- **Database Configuration:** `HasComputedColumnSql("GETUTCDATE()")`
+- **Note:** Computed column - automatically updated by database
+- **Description:** Audit field for last modification timestamp
+
+---
+
+### BasePerfume<TPerfume, TKey> (Abstract Base Class)
+Generic base class for all perfume entities.
+
+**Generic Parameters:**
+- `TPerfume` - Derived perfume type (e.g., PerfumeOil)
+- `TKey` - Type of primary key (Guid for PerfumeOil)
+
+**Inherits From:** `BaseEntity<TKey>`
+**Implements:** `IPerfume` interface
+
+#### Properties with Attributes
+All properties listed under "Inherited from BasePerfume" in PerfumeOil section above.
+
+---
+
+### Entity Configuration Summary
+
+**Configuration Approach:** Fluent API using `IEntityTypeConfiguration<T>`
+
+**Configuration Classes:**
+1. `BaseEntityConfiguration<TEntity, TKey>` - Configures audit fields and primary key
+2. `BasePerfumeConfiguration<TPerfumeEntity, TKey>` - Configures common perfume properties
+3. `PerfumeOilConfiguration` - Configures PerfumeOil-specific properties
+
+**Configuration Hierarchy:**
+```
+BaseEntityConfiguration
+  └── BasePerfumeConfiguration
+        └── PerfumeOilConfiguration
+```
+
+**Key Configuration Features:**
+- **Enum Storage:** All enums stored as strings (varchar) for readability
+- **Owned Entities:** BasePerfumePrice embedded in parent table
+- **Computed Columns:** LastModifiedOn auto-updates via SQL function
+- **Default Values:** CreatedOn auto-populated on insert
+- **String Lengths:** All strings have explicit max lengths
+- **Decimal Precision:** Prices use decimal(10,3) for accuracy
+- **Nullable Handling:** Explicit IsRequired(true/false) for all properties
+
+---
+
+## Database Configuration
+
+### Connection Strings
+Three connection strings configured in `appsettings.json`:
+
+1. **DevConnection** (Currently Active)
+   - Local development database
+   - Server: `.` (local SQL Server)
+   - Database: `PerfumeShop`
+   - Authentication: Integrated Security (Windows Auth)
+   - Encryption: Enabled with trusted certificate
+
+2. **SqlConnection**
+   - Remote hosted database
+   - Server: `db32735.databaseasp.net`
+   - Database: `db32735`
+   - Authentication: SQL Server (User: db32735)
+   - Encryption: Disabled
+   - Multi-active result sets: Enabled
+
+3. **SqlRemoteConnection**
+   - Public remote database
+   - Server: `db32735.public.databaseasp.net`
+   - Database: `db32735`
+   - Authentication: SQL Server (User: db32735)
+   - Encryption: Enabled with trusted certificate
+
+**Note:** Password redacted in SqlRemoteConnection for security.
+
+### Database Initialization
+- Automatic migration on application startup via `InitializeDatabaseAsync()`
+- Pending migrations applied automatically
+- Seed data loaded from JSON and CSV files
+
+### Migrations History
+1. **20251111210807_CreateDataBaseInfrastructre** - Initial database schema
+2. **20251125183212_Add3ColumnInPerfumeOilTable** - Added 3 columns to PerfumeOil
+3. **20251125184438_AddProvidersColumns** - Added provider-related columns
+4. **20251125204122_DropIndexOfNameColumn** - Removed index from Name column
+
+---
+
+## Application Architecture
+
+### Dependency Injection
+The application uses ASP.NET Core's built-in DI container with extension methods for clean registration.
+
+**DAL Registration** (`DependencyInjection.cs` in DAL):
+```csharp
+services.AddDbContext<PerfumesShopDbContext>(options => 
+    options.UseSqlServer(configuration.GetConnectionString("DevConnection")));
+services.AddScoped<IDbInitializer, DbInitializer>();
+services.AddScoped<IPerfumeOilRepositories, PerfumeOilRepositories>();
+```
+
+**BLL Registration** (`DependencyInjection.cs` in BLL):
+```csharp
+services.AddScoped<IPerfumeOilService, PerfumeOilService>();
+```
+
+**PL Registration** (`Program.cs`):
+```csharp
+builder.Services.AddControllersWithViews();
+builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddApplicationServices();
+```
+
+### Repository Pattern
+Generic repository pattern with specialized implementations:
+- `IBaseRepository<TEntity, TKey>` - CRUD operations
+- `IBasePerfumeRepository<TPerfume, TKey>` - Perfume-specific operations
+- `IPerfumeOilRepositories` - Perfume oil filtering and queries
+
+### Service Layer
+Service layer abstracts business logic from controllers:
+- `IPerfumeOilService` - Business operations for perfume oils
+- `PerfumeOilService` - Implementation with repository injection
+
+---
+
+## Key Features
+
+### 1. Perfume Oil Management
+- **Create** - Add new perfume oils with validation
+- **Read** - View all perfumes or filter by fragrance type
+- **Update** - Edit existing perfume details
+- **Delete** - Soft delete capability (commented out in controller)
+- **Filter** - By FragranceType, FragranceFamily, Price, Rating
+- **Export** - Download all perfumes as JSON
+
+### 2. Data Seeding
+Two seed data sources:
+
+**JSON Seed:**
+- Single sample perfume ("Midnight Bloom")
+- Hardcoded in DbInitializer
+- Used for initial database population
+
+**CSV Seed:**
+- Bulk import from `EssencePerfumePriceList.csv`
+- Imports perfumes from ESSENCES_PERFUMES manufacturer
+- Automatic price calculation based on supplier price tiers:
+  - < 5: Sale price 5
+  - 5-6: Sale price 6.5
+  - 6-7: Sale price 7.5
+  - 7-8: Sale price 9
+  - 8-9: Sale price 10
+  - >= 9: Sale price 15
+
+### 3. Validation
+**Model Validation:**
+- Name: Minimum 2 characters
+- RatingOfSale: Range 1-10
+- Server-side validation in controllers
+- Client-side validation in views (via data annotations)
+
+### 4. Routing
+**Default Route:**
+```
+{controller=PerfumesOil}/{action=Index}/{id?}
+```
+Default landing page: PerfumesOil/Index
+
+**Available Routes:**
+- `GET /PerfumesOil` - List all perfumes
+- `GET /PerfumesOil?fragranceType={type}` - Filter by fragrance type
+- `GET /PerfumesOil/Create` - Create form
+- `POST /PerfumesOil/Create` - Submit new perfume
+- `GET /PerfumesOil/Details/{id}` - View details
+- `GET /PerfumesOil/Edit/{id}` - Edit form
+- `POST /PerfumesOil/Edit` - Submit edits
+- `GET /PerfumesOil/Download` - Export JSON
+
+---
+
+## Design Patterns Used
+
+1. **Repository Pattern** - Data access abstraction
+2. **Service Layer Pattern** - Business logic separation
+3. **Dependency Injection** - Loose coupling and testability
+4. **Generic Base Classes** - Code reuse (BaseEntity, BasePerfume, BaseRepository)
+5. **DTO Pattern** - Data transfer between layers
+6. **Template Method** - Base repository with virtual methods
+7. **Factory Pattern** - DbContext creation
+8. **Strategy Pattern** - Custom JSON converter for seeding
+
+---
+
+## Configuration & Settings
+
+### Application Settings (`appsettings.json`)
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": { ... }
+}
+```
+
+### HTTP Pipeline Configuration
+1. Exception handling (non-development: `/Home/Error`)
+2. HSTS (non-development)
+3. HTTPS redirection
+4. Routing
+5. Authorization
+6. Static assets
+7. Controller routing with static assets
+
+---
+
+## Data Flow
+
+### Create Perfume Flow
+1. User requests `GET /PerfumesOil/Create`
+2. Controller returns empty `PerfumeOilCreateDto` form
+3. User submits `POST /PerfumesOil/Create`
+4. Controller validates model state
+5. Controller maps DTO to `PerfumeOil` entity
+6. Controller calls `IPerfumeOilService.CreatePerfumeOilAsync()`
+7. Service calls `IPerfumeOilRepositories.AddAsync()`
+8. Repository adds to DbContext and saves changes
+9. Redirect to `Index` action
+
+### Read/Filter Flow
+1. User requests `GET /PerfumesOil?fragranceType=Female`
+2. Controller checks if filter parameter exists
+3. If yes: calls `IPerfumeOilService.FilterByFragrancyType()`
+4. If no: calls `IPerfumeOilService.GetAllPerfumesOilAsync()`
+5. Service delegates to repository
+6. Repository queries DbContext with LINQ
+7. Results returned to view
+8. View renders perfume list
+
+### Update Flow
+1. User requests `GET /PerfumesOil/Edit/{id}`
+2. Controller retrieves perfume by ID
+3. Controller maps entity to `PerfumeOilEditDto`
+4. Controller stores ID in TempData for security
+5. User submits `POST /PerfumesOil/Edit`
+6. Controller validates ID matches TempData
+7. Controller validates model state
+8. Controller retrieves entity and updates properties
+9. Service updates via repository
+10. Redirect to `Details` action
+
+---
+
+## Security Considerations
+
+### Current Implementation
+- **Anti-forgery tokens** - Implicit in MVC forms
+- **Model validation** - Server-side validation enforced
+- **TempData validation** - ID verification in Edit action
+- **Connection string security** - Password redacted in one connection string
+
+### Potential Improvements
+- Authentication/Authorization not implemented
+- No user roles or permissions
+- Delete functionality commented out (safety measure)
+- CreatedBy/LastModifiedBy fields populated with empty strings
+- No input sanitization for XSS prevention
+- No rate limiting or CSRF protection beyond defaults
+
+---
+
+## Known Technical Debt
+
+1. **Empty Folders:**
+   - `BLL/Mapping/` - No mapping configurations (manual mapping in controllers)
+   - `BLL/ModelsDtos/` - No business DTOs (using DAL entities directly)
+
+2. **Hardcoded Values:**
+   - Seed data embedded in DbInitializer
+   - CreatedBy/LastModifiedBy set to empty strings
+   - Price calculation logic hardcoded
+
+3. **Commented Code:**
+   - Delete action commented out in controller
+   - Alternative connection strings commented in DependencyInjection
+
+4. **Missing Features:**
+   - No authentication/authorization
+   - No image upload for perfumes
+   - No shopping cart or order management
+   - No customer management
+   - No reporting or analytics
+
+5. **Code Quality:**
+   - Direct entity exposure to presentation layer
+   - No AutoMapper or similar mapping library
+   - Limited error handling
+   - No logging implementation
+   - No unit tests
+
+---
+
+## File Structure Overview
+
+```
+CodeWithMena.PerfumeShop/
+├── .git/
+├── .github/
+├── .vs/
+├── .dist/
+├── CodeWithMena.PerfumeShop.DAL/
+│   ├── Common/
+│   │   ├── Entities/
+│   │   │   ├── BaseEntity.cs
+│   │   │   ├── BasePerfume.cs
+│   │   │   └── BasePerfumePrice.cs
+│   │   ├── Enums/
+│   │   │   ├── FragranceFamily.cs
+│   │   │   ├── FragranceType.cs
+│   │   │   ├── ManufacturingCompany.cs
+│   │   │   ├── ProductionCategory.cs
+│   │   │   └── UnitType.cs
+│   │   └── Repositories/
+│   │       ├── Base/
+│   │       │   ├── IBasePerfumeRepository.cs
+│   │       │   └── IBaseRepository.cs
+│   │       └── IPerfumeOilRepositories.cs
+│   ├── Contracts/
+│   │   ├── IBasePerfumePrice.cs
+│   │   ├── IDbInitializer.cs
+│   │   └── IPerfume.cs
+│   ├── Entities/
+│   │   └── PerfumeOil.cs
+│   ├── Persistence/
+│   │   ├── Data/
+│   │   │   ├── Configurations/
+│   │   │   │   ├── Common/
+│   │   │   │   │   ├── BaseEntityConfiguration.cs
+│   │   │   │   │   └── BasePerfumeConfiguration.cs
+│   │   │   │   └── PerfumeOils/
+│   │   │   │       └── PerfumeOilConfiguration.cs
+│   │   │   ├── DbInitializer/
+│   │   │   │   └── DbInitializer.cs
+│   │   │   ├── Migrations/
+│   │   │   │   ├── 20251111210807_CreateDataBaseInfrastructre.cs
+│   │   │   │   ├── 20251125183212_Add3ColumnInPerfumeOilTable.cs
+│   │   │   │   ├── 20251125184438_AddProvidersColumns.cs
+│   │   │   │   ├── 20251125204122_DropIndexOfNameColumn.cs
+│   │   │   │   └── PerfumesShopDbContextModelSnapshot.cs
+│   │   │   ├── Seeds/
+│   │   │   │   └── CustomPerfumesOilJsonConverter.cs
+│   │   │   └── PerfumesShopDbContext.cs
+│   │   └── Repositories/
+│   │       ├── BaseRepositories/
+│   │       │   ├── BasePerfumeRepository.cs
+│   │       │   └── BaseRepository.cs
+│   │       └── PerfumeOilRepositories.cs
+│   ├── DependencyInjection.cs
+│   └── CodeWithMena.PerfumeShop.DAL.csproj
+├── CodeWithMena.PerfumeShop.BLL/
+│   ├── Contracts/
+│   │   └── IPerfumeOilService.cs
+│   ├── Services/
+│   │   └── Perfumes/
+│   │       └── PerfumeOilService.cs
+│   ├── Mapping/ (empty)
+│   ├── ModelsDtos/ (empty)
+│   ├── DependencyInjection.cs
+│   └── CodeWithMena.PerfumeShop.BLL.csproj
+├── CodeWithMena.PerfumeShop.PL/
+│   ├── Controllers/
+│   │   ├── HomeController.cs
+│   │   └── PerfumesOilController.cs
+│   ├── ViewModels/
+│   │   ├── Perfumes/
+│   │   │   ├── PerfumeOilCreateDto.cs
+│   │   │   └── PerfumeOilEditDto.cs
+│   │   └── ErrorViewModel.cs
+│   ├── Views/
+│   │   ├── Home/
+│   │   ├── PerfumesOil/
+│   │   │   ├── Create.cshtml
+│   │   │   ├── Details.cshtml
+│   │   │   ├── Edit.cshtml
+│   │   │   ├── Index.cshtml
+│   │   │   └── HelperDesign/
+│   │   ├── Shared/
+│   │   ├── _ViewImports.cshtml
+│   │   └── _ViewStart.cshtml
+│   ├── wwwroot/
+│   │   ├── css/
+│   │   ├── js/
+│   │   ├── lib/
+│   │   ├── Seeds/
+│   │   │   ├── CustomPerfumesOilJsonConverter.cs
+│   │   │   ├── EssencePerfumePriceList.csv
+│   │   │   ├── PerfumesOil.json
+│   │   │   └── PerfumesOil2.json
+│   │   └── favicon.ico
+│   ├── Properties/
+│   ├── InitializerExtensions.cs
+│   ├── Program.cs
+│   ├── appsettings.json
+│   ├── appsettings.Development.json
+│   ├── libman.json
+│   └── CodeWithMena.PerfumeShop.PL.csproj
+├── .gitignore
+├── .gitattributes
+└── CodeWithMena.PerfumeShop.slnx
+```
+
+---
+
+## Development Workflow
+
+### Running the Application
+1. Ensure SQL Server is running (local or remote)
+2. Update connection string in `appsettings.json` if needed
+3. Run the application (F5 in Visual Studio or `dotnet run`)
+4. Database automatically migrates and seeds on first run
+5. Navigate to `https://localhost:{port}/PerfumesOil`
+
+### Adding a New Migration
+```bash
+# From PL project directory
+dotnet ef migrations add MigrationName --project ../CodeWithMena.PerfumeShop.DAL
+```
+
+### Updating Database Manually
+```bash
+# From PL project directory
+dotnet ef database update --project ../CodeWithMena.PerfumeShop.DAL
+```
+
+### Adding New Perfume Properties
+1. Add property to `PerfumeOil` entity (DAL)
+2. Update `BasePerfume` if shared across perfume types
+3. Create migration
+4. Update `PerfumeOilCreateDto` and `PerfumeOilEditDto` (PL)
+5. Update Create/Edit views
+6. Update controller mapping logic
+7. Update Details view if needed
+
+---
+
+## Business Logic
+
+### Pricing Strategy
+The application implements a tiered pricing strategy for imported perfumes:
+- Supplier prices are per kilogram, converted to per gram
+- Sale prices calculated based on supplier price tiers
+- Profit margin automatically calculated via `BasePerfumePrice.GetProfitMargin()`
+
+### Fragrance Type System
+Uses a Flags enum allowing combination:
+- Male = 1
+- Female = 2
+- Male + Female = 3 (unisex)
+- East = 4
+- Other = 7
+
+### Rating System
+Sales rating from 1-10 indicating popularity or quality tier.
+
+---
+
+## Extension Points
+
+### Adding New Perfume Types
+1. Create new entity inheriting from `BasePerfume<TEntity, TKey>`
+2. Add DbSet to `PerfumesShopDbContext`
+3. Create repository interface and implementation
+4. Create service interface and implementation
+5. Register in DI containers
+6. Create controller and views
+
+### Adding Authentication
+1. Install `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
+2. Update `PerfumesShopDbContext` to inherit from `IdentityDbContext`
+3. Add Identity services in `Program.cs`
+4. Create user registration/login views
+5. Add `[Authorize]` attributes to controllers
+6. Update CreatedBy/LastModifiedBy to use authenticated user
+
+### Adding Image Upload
+1. Add `ImageUrl` property to `PerfumeOil`
+2. Create migration
+3. Add file upload input to Create/Edit forms
+4. Implement file upload handling in controller
+5. Save files to `wwwroot/images/perfumes/`
+6. Display images in Index and Details views
+
+---
+
+## Performance Considerations
+
+### Current State
+- No caching implemented
+- No pagination on Index page (loads all records)
+- No lazy loading configuration
+- No query optimization or indexing strategy
+
+### Recommended Improvements
+1. Implement pagination for large datasets
+2. Add response caching for frequently accessed data
+3. Implement distributed caching (Redis) for production
+4. Add database indexes on frequently queried columns
+5. Use AsNoTracking() for read-only queries
+6. Implement query result projection to reduce data transfer
+
+---
+
+## Testing Strategy (Not Implemented)
+
+### Recommended Test Coverage
+1. **Unit Tests:**
+   - Service layer business logic
+   - Repository filtering methods
+   - Price calculation logic
+   - Validation logic
+
+2. **Integration Tests:**
+   - Controller actions
+   - Database operations
+   - End-to-end workflows
+
+3. **UI Tests:**
+   - Form submissions
+   - Validation messages
+   - Navigation flows
+
+---
+
+## Deployment Considerations
+
+### Database
+- Ensure connection string points to production database
+- Run migrations before deployment or enable auto-migration
+- Backup database before migrations
+- Seed data only runs if tables are empty
+
+### Configuration
+- Update `appsettings.Production.json` with production settings
+- Use Azure Key Vault or similar for sensitive data
+- Configure appropriate logging levels
+- Set `ASPNETCORE_ENVIRONMENT` to `Production`
+
+### Hosting
+- Compatible with IIS, Azure App Service, Docker, etc.
+- Requires .NET 9.0 runtime
+- Requires SQL Server access
+- Static files served from wwwroot
+
+---
+
+## Maintenance Notes
+
+### Regular Tasks
+- Monitor database size (seed data can grow)
+- Review and clean old migrations
+- Update NuGet packages regularly
+- Review and optimize slow queries
+- Backup database regularly
+
+### Code Maintenance
+- Remove commented code or document why it's kept
+- Implement proper logging
+- Add XML documentation comments
+- Consider implementing AutoMapper for DTO mapping
+- Refactor hardcoded values to configuration
+
+---
+
+## Contact & Ownership
+**Project Name:** CodeWithMena.PerfumeShop  
+**Developer:** Mena (CodeWithMena)  
+**Purpose:** Educational/Portfolio Project - Perfume Shop Management System
+
+---
+
+*This documentation was auto-generated by analyzing the codebase structure, configuration files, and implementation details. Last updated: 2026-02-01*

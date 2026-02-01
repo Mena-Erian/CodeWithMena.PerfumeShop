@@ -20,7 +20,7 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Data.Configurations.Common
         {
             base.Configure(builder);
 
-            builder.HasIndex(p => p.Name).IsUnique();
+            //builder.HasIndex(p => p.Name).IsUnique();
 
             builder.Property(p => p.Name)
                 .IsRequired()

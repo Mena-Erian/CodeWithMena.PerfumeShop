@@ -1,0 +1,33 @@
+@model CodeWithMena.PerfumeShop.PL.ViewModels.Mix.MixedPerfumeDetailsVm
+@{
+    ViewData["Title"] = "Mix " + Model.MixCode;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Mixed Perfume: @Model.MixCode</h1>
+<div class="card">
+    <div class="card-body">
+        <p><strong>Sale Item:</strong> @Model.SaleItemName</p>
+        <p><strong>Bottle:</strong> @Model.BottleSize</p>
+        <p><strong>Invoice:</strong> @Model.InvoiceNumber</p>
+        <p><strong>Sale Date:</strong> @Model.SaleDateTime.ToString("yyyy-MM-dd HH:mm")</p>
+        <h5>Ingredients</h5>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Perfume Oil</th>
+                    <th class="text-end">Ml Used</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model.Ingredients)
+                {
+                    <tr>
+                        <td>@i.PerfumeOilName</td>
+                        <td class="text-end">@i.MlUsed.ToString("N2")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

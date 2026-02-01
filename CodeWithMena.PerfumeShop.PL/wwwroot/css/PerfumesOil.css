@@ -94,6 +94,7 @@
 }
 
 .perfume-name {
+    max-width: 50%;
     font-size: 1.5rem;
     font-weight: 700;
     color: #1e293b;
@@ -132,14 +133,13 @@
 
 /* Card Body */
 .perfume-card-body {
-    padding: 1.5rem;
+    padding: 0.25rem 0.75rem 0;
 }
 
 .perfume-info-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.75rem;
 }
 
 .info-label {
@@ -273,6 +273,7 @@
 
     .perfume-name {
         font-size: 1.25rem;
+        max-width: 33.333%;
     }
 
     .info-value-price {
@@ -324,4 +325,282 @@
 /* Hidden input */
 .perfume-id {
     display: none;
+}
+
+/* Search Container Styles */
+
+.search-wrapper {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+    .search-wrapper:focus-within {
+        box-shadow: 0 6px 30px rgba(102, 126, 234, 0.25);
+        border-color: #667eea;
+        transform: translateY(-2px);
+    }
+
+.search-icon {
+    position: absolute;
+    left: 1.5rem;
+    font-size: 1.25rem;
+    color: #667eea;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 3.5rem 1rem 3.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1e293b;
+    background: transparent;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+    .search-input::placeholder {
+        color: #94a3b8;
+        font-weight: 400;
+    }
+
+.search-clear {
+    position: absolute;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+    .search-clear:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    .search-clear:active {
+        transform: scale(0.95);
+    }
+
+/* No Results Message */
+.no-results {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 2rem;
+    display: none;
+}
+
+.no-results-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.no-results-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.no-results-text {
+    font-size: 1rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-wrapper {
+        max-width: 100%;
+    }
+
+    .search-icon {
+        left: 1.25rem;
+        font-size: 1.125rem;
+    }
+
+    .search-input {
+        padding: 0.875rem 3rem 0.875rem 3rem;
+        font-size: 0.95rem;
+    }
+
+    .search-clear {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-icon {
+        left: 1rem;
+    }
+
+    .search-input {
+        padding: 0.75rem 2.75rem 0.75rem 2.75rem;
+        font-size: 0.9rem;
+    }
+
+    .no-results-icon {
+        font-size: 3rem;
+    }
+
+    .no-results-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation for search wrapper */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-container {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Filter Buttons Styles - Add to your perfume-oil.css file */
+
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: white;
+    color: #667eea;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+    .filter-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        border-color: #667eea;
+        color: #764ba2;
+        background: rgba(102, 126, 234, 0.05);
+    }
+
+    .filter-btn.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+        .filter-btn.active:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+.filter-emoji {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.filter-text {
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.filter-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-left: 0.25rem;
+}
+
+/* Clear Filter Button */
+.filter-btn-clear {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+    .filter-btn-clear:hover {
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filter-btn {
+        padding: 0.625rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .filter-emoji {
+        font-size: 1.125rem;
+    }
+
+    .filter-text {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-btn {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.8rem;
+    }
+
+    .filter-emoji {
+        font-size: 1rem;
+    }
+
+    .filter-text {
+        font-size: 0.8rem;
+    }
+
+    .filter-badge {
+        width: 1rem;
+        height: 1rem;
+        font-size: 0.625rem;
+    }
 }
