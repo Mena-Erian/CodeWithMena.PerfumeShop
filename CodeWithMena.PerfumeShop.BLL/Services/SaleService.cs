@@ -152,5 +152,62 @@ namespace CodeWithMena.PerfumeShop.BLL.Services
         public async Task<string> GenerateMixCodeAsync() => await Task.FromResult(GenerateMixCode());
 
         public async Task<Sale?> GetSaleByIdAsync(Guid id) => await saleRepo.GetByIdWithItemsAsync(id);
+
+        public async Task<bool> UpdateSaleAsync(Guid id, decimal? discountPercent, decimal? discountAmount, string? paymentMethod, string? notes)
+        {
+            var sale = await saleRepo.GetByIdWithItemsAsync(id);
+            if (sale == null) return false;
+
+            const string auditUser = "System";
+            sale.DiscountPercent = discountPercent;
+            sale.DiscountAmount = discountAmount;
+            sale.PaymentMethod = paymentMethod;
+            sale.Notes = notes;
+            sale.LastModifiedBy = auditUser;
+
+            pricingService.ApplyDiscount(sale.Subtotal, discountPercent, discountAmount, out decimal temp);
+
+            sale.TotalAfterDiscount = temp;
+
+            await saleRepo.UpdateAsync(sale);
+            await RecalculateDailySummaryForDateAsync(DateOnly.FromDateTime(sale.SaleDateTime), auditUser);
+            return true;
+        }
+
+        private async Task RecalculateDailySummaryForDateAsync(DateOnly date, string auditUser)
+        {
+            var salesForDay = await saleRepo.GetByDateAsync(date);
+            decimal totalSales = 0, totalDiscount = 0, netIncome = 0;
+            foreach (var s in salesForDay)
+            {
+                totalSales += s.Subtotal;
+                totalDiscount += s.Subtotal - s.TotalAfterDiscount;
+                netIncome += s.TotalAfterDiscount;
+            }
+            var summary = await dailySummaryRepo.GetByDateAsync(date);
+            if (summary != null)
+            {
+                summary.TotalSales = totalSales;
+                summary.TotalDiscount = totalDiscount;
+                summary.NetIncome = netIncome;
+                summary.InvoiceCount = salesForDay.Count;
+                summary.LastModifiedBy = auditUser;
+            }
+            else
+            {
+                summary = new DailySummary
+                {
+                    Id = Guid.NewGuid(),
+                    Date = date,
+                    TotalSales = totalSales,
+                    TotalDiscount = totalDiscount,
+                    NetIncome = netIncome,
+                    InvoiceCount = salesForDay.Count,
+                    CreatedBy = auditUser,
+                    LastModifiedBy = auditUser
+                };
+            }
+            await dailySummaryRepo.AddOrUpdateAsync(summary);
+        }
     }
 }

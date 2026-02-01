@@ -14,23 +14,39 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
         {
             var d = date ?? DateOnly.FromDateTime(DateTime.Today);
             var summary = await reportService.GetDailySummaryAsync(d);
-            var model = summary == null
-                ? new DailySummaryVm
+            var invoices = await reportService.GetInvoicesForDayAsync(d);
+            var model = new DailyReportVm
+            {
+                Summary = summary == null
+                    ? new DailySummaryVm
+                    {
+                        Date = d,
+                        TotalSales = 0,
+                        TotalDiscount = 0,
+                        NetIncome = 0,
+                        InvoiceCount = 0
+                    }
+                    : new DailySummaryVm
+                    {
+                        Date = summary.Date,
+                        TotalSales = summary.TotalSales,
+                        TotalDiscount = summary.TotalDiscount,
+                        NetIncome = summary.NetIncome,
+                        InvoiceCount = summary.InvoiceCount
+                    },
+                Invoices = invoices.Select(s => new InvoiceRowVm
                 {
-                    Date = d,
-                    TotalSales = 0,
-                    TotalDiscount = 0,
-                    NetIncome = 0,
-                    InvoiceCount = 0
-                }
-                : new DailySummaryVm
-                {
-                    Date = summary.Date,
-                    TotalSales = summary.TotalSales,
-                    TotalDiscount = summary.TotalDiscount,
-                    NetIncome = summary.NetIncome,
-                    InvoiceCount = summary.InvoiceCount
-                };
+                    Id = s.Id,
+                    InvoiceNumber = s.InvoiceNumber,
+                    SaleDateTime = s.SaleDateTime,
+                    Subtotal = s.Subtotal,
+                    DiscountPercent = s.DiscountPercent,
+                    DiscountAmount = s.DiscountAmount,
+                    TotalAfterDiscount = s.TotalAfterDiscount,
+                    PaymentMethod = s.PaymentMethod,
+                    ItemCount = s.SaleItems?.Count ?? 0
+                }).ToList()
+            };
             return View(model);
         }
 

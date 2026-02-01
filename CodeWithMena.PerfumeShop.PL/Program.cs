@@ -14,6 +14,21 @@ namespace CodeWithMena.PerfumeShop.PL
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddAuthentication(Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Login";
+                    options.LogoutPath = "/Account/Logout";
+                    options.ExpireTimeSpan = TimeSpan.FromHours(8);
+                    options.SlidingExpiration = true;
+                });
+            builder.Services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
+
             builder.Services.AddPersistenceServices(builder.Configuration);
             builder.Services.AddApplicationServices();
 
@@ -39,12 +54,13 @@ namespace CodeWithMena.PerfumeShop.PL
             app.UseHttpsRedirection();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=PerfumesOil}/{action=Index}/{id?}")
+                pattern: "{controller=POS}/{action=Create}/{id?}")
                 .WithStaticAssets();
 
             #endregion

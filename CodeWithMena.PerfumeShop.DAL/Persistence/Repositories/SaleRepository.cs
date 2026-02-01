@@ -19,9 +19,26 @@ namespace CodeWithMena.PerfumeShop.DAL.Persistence.Repositories
                 .ThenInclude(si => si.PerfumeOil)
                 .FirstOrDefaultAsync(s => s.Id == id);
 
+        public async Task<ICollection<Sale>> GetByDateAsync(DateOnly date)
+        {
+            var start = date.ToDateTime(TimeOnly.MinValue);
+            var end = date.ToDateTime(TimeOnly.MaxValue);
+            return await dbContext.Sales
+                .Include(s => s.SaleItems)
+                .Where(s => s.SaleDateTime >= start && s.SaleDateTime <= end)
+                .OrderByDescending(s => s.SaleDateTime)
+                .ToListAsync();
+        }
+
         public async Task<int> AddAsync(Sale sale)
         {
             await dbContext.Sales.AddAsync(sale);
+            return await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<int> UpdateAsync(Sale sale)
+        {
+            dbContext.Sales.Update(sale);
             return await dbContext.SaveChangesAsync();
         }
 

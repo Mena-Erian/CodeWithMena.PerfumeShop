@@ -6,5 +6,6 @@ namespace CodeWithMena.PerfumeShop.BLL.Contracts
     {
         Task<DailySummary?> GetDailySummaryAsync(DateOnly date);
         Task<ICollection<DailySummary>> GetRangeSummaryAsync(DateOnly from, DateOnly to);
+        Task<ICollection<Sale>> GetInvoicesForDayAsync(DateOnly date);
     }
 }

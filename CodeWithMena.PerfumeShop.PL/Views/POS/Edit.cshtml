@@ -1,0 +1,89 @@
+@model CodeWithMena.PerfumeShop.PL.ViewModels.POS.SaleEditVm
+@{
+    ViewData["Title"] = "Edit Invoice " + Model.InvoiceNumber;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Invoice</h1>
+<div class="card mb-3">
+    <div class="card-body">
+        <p class="mb-1"><strong>Invoice #</strong> @Model.InvoiceNumber</p>
+        <p class="mb-1"><strong>Date</strong> @Model.SaleDateTime.ToString("yyyy-MM-dd HH:mm")</p>
+        <p class="mb-0"><strong>Subtotal</strong> @Model.Subtotal.ToString("N2") EGP</p>
+    </div>
+</div>
+
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="InvoiceNumber" />
+    <input type="hidden" asp-for="SaleDateTime" />
+    <input type="hidden" asp-for="Subtotal" />
+
+    <div class="card mb-3">
+        <div class="card-header">Header (editable)</div>
+        <div class="card-body">
+            <div class="row g-2">
+                <div class="col-md-3">
+                    <label asp-for="DiscountPercent" class="form-label"></label>
+                    <input asp-for="DiscountPercent" class="form-control" type="number" step="0.01" min="0" max="100" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="DiscountAmount" class="form-label"></label>
+                    <input asp-for="DiscountAmount" class="form-control" type="number" step="0.01" min="0" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="PaymentMethod" class="form-label"></label>
+                    <input asp-for="PaymentMethod" class="form-control" />
+                </div>
+            </div>
+            <div class="mt-2">
+                <label asp-for="Notes" class="form-label"></label>
+                <textarea asp-for="Notes" class="form-control" rows="2"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">Line items (read-only)</div>
+        <div class="card-body p-0">
+            <table class="table table-sm mb-0">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Company</th>
+                        <th>Bottle</th>
+                        <th class="text-end">Qty</th>
+                        <th class="text-end">Unit Price</th>
+                        <th class="text-end">Line Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.NameSnapshot @(item.IsMixed ? " (Mix: " + item.MixCode + ")" : "")</td>
+                            <td>@(item.ManufacturingCompanySnapshot ?? "—")</td>
+                            <td>@item.BottleSize</td>
+                            <td class="text-end">@item.Quantity</td>
+                            <td class="text-end">@item.UnitPrice.ToString("N2")</td>
+                            <td class="text-end">@item.LineTotal.ToString("N2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <p><strong>Total after discount:</strong> <span id="totalPreview">@Model.TotalAfterDiscount.ToString("N2")</span> EGP <small class="text-muted">(recalculated on save)</small></p>
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Invoice" asp-route-id="@Model.Id" class="btn btn-outline-secondary">View Invoice</a>
+        <a asp-controller="Reports" asp-action="DailyResult" asp-route-date="@Model.SaleDateTime.ToString("yyyy-MM-dd")" class="btn btn-outline-secondary">Back to Daily Report</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

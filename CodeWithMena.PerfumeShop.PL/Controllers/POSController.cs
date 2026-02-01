@@ -101,6 +101,81 @@ namespace CodeWithMena.PerfumeShop.PL.Controllers
             var model = POSControllerHelpers.MapToInvoiceVm(sale);
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var sale = await saleService.GetSaleByIdAsync(id);
+            if (sale == null) return NotFound();
+
+            var model = new SaleEditVm
+            {
+                Id = sale.Id,
+                InvoiceNumber = sale.InvoiceNumber,
+                SaleDateTime = sale.SaleDateTime,
+                Subtotal = sale.Subtotal,
+                DiscountPercent = sale.DiscountPercent,
+                DiscountAmount = sale.DiscountAmount,
+                PaymentMethod = sale.PaymentMethod,
+                Notes = sale.Notes,
+                TotalAfterDiscount = sale.TotalAfterDiscount,
+                Items = sale.SaleItems.Select(si => new SaleItemLineVm
+                {
+                    NameSnapshot = si.NameSnapshot,
+                    ManufacturingCompanySnapshot = si.ManufacturingCompanySnapshot,
+                    Quantity = si.Quantity,
+                    UnitPrice = si.UnitPrice,
+                    LineTotal = si.LineTotal,
+                    IsMixed = si.IsMixed,
+                    MixCode = si.MixedPerfume?.MixCode,
+                    BottleSize = si.Bottle != null ? si.Bottle.SizeMl + " ml" : (si.BottleId == null ? "—" : "")
+                }).ToList()
+            };
+            TempData["SaleEditId"] = sale.Id;
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(SaleEditVm model)
+        {
+            if (TempData["SaleEditId"]?.ToString() != model.Id.ToString())
+                return BadRequest("Invalid request.");
+            if (!ModelState.IsValid)
+            {
+                TempData["SaleEditId"] = model.Id;
+                var sale = await saleService.GetSaleByIdAsync(model.Id);
+                if (sale != null)
+                {
+                    model.InvoiceNumber = sale.InvoiceNumber;
+                    model.SaleDateTime = sale.SaleDateTime;
+                    model.Subtotal = sale.Subtotal;
+                    model.TotalAfterDiscount = sale.TotalAfterDiscount;
+                    model.Items = sale.SaleItems.Select(si => new SaleItemLineVm
+                    {
+                        NameSnapshot = si.NameSnapshot,
+                        ManufacturingCompanySnapshot = si.ManufacturingCompanySnapshot,
+                        Quantity = si.Quantity,
+                        UnitPrice = si.UnitPrice,
+                        LineTotal = si.LineTotal,
+                        IsMixed = si.IsMixed,
+                        MixCode = si.MixedPerfume?.MixCode,
+                        BottleSize = si.Bottle != null ? si.Bottle.SizeMl + " ml" : (si.BottleId == null ? "—" : "")
+                    }).ToList();
+                }
+                return View(model);
+            }
+
+            var updated = await saleService.UpdateSaleAsync(
+                model.Id,
+                model.DiscountPercent,
+                model.DiscountAmount,
+                model.PaymentMethod,
+                model.Notes);
+            if (!updated) return NotFound();
+
+            return RedirectToAction(nameof(Invoice), new { id = model.Id });
+        }
     }
 
     public static class POSControllerHelpers

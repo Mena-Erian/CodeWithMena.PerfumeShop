@@ -36,6 +36,7 @@ namespace CodeWithMena.PerfumeShop.BLL.Contracts
     {
         Task<Sale> CreateSaleAsync(CreateSaleInput input);
         Task<Sale?> GetSaleByIdAsync(Guid id);
+        Task<bool> UpdateSaleAsync(Guid id, decimal? discountPercent, decimal? discountAmount, string? paymentMethod, string? notes);
         Task<string> GenerateInvoiceNumberAsync();
         Task<string> GenerateMixCodeAsync();
     }

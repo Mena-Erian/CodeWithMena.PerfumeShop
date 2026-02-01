@@ -1,16 +1,68 @@
-@model CodeWithMena.PerfumeShop.PL.ViewModels.Reports.DailySummaryVm
+@model CodeWithMena.PerfumeShop.PL.ViewModels.Reports.DailyReportVm
 @{
-    ViewData["Title"] = "Daily Summary - " + Model.Date;
+    ViewData["Title"] = "Daily Report - " + Model.Summary.Date;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Daily Summary - @Model.Date.ToString("yyyy-MM-dd")</h1>
-<div class="card">
+<h1>Daily Report - @Model.Summary.Date.ToString("yyyy-MM-dd")</h1>
+
+<div class="card mb-4">
+    <div class="card-header"><strong>Summary</strong></div>
     <div class="card-body">
-        <p><strong>Total Sales:</strong> @Model.TotalSales.ToString("N2") EGP</p>
-        <p><strong>Total Discount:</strong> @Model.TotalDiscount.ToString("N2") EGP</p>
-        <p><strong>Net Income:</strong> @Model.NetIncome.ToString("N2") EGP</p>
-        <p><strong>Invoice Count:</strong> @Model.InvoiceCount</p>
+        <p class="mb-1"><strong>Total Sales:</strong> @Model.Summary.TotalSales.ToString("N2") EGP</p>
+        <p class="mb-1"><strong>Total Discount:</strong> @Model.Summary.TotalDiscount.ToString("N2") EGP</p>
+        <p class="mb-1"><strong>Net Income:</strong> @Model.Summary.NetIncome.ToString("N2") EGP</p>
+        <p class="mb-0"><strong>Invoice Count:</strong> @Model.Summary.InvoiceCount</p>
     </div>
 </div>
-<a asp-action="Daily" class="btn btn-secondary mt-2">Back</a>
+
+<div class="card">
+    <div class="card-header"><strong>All Invoices for This Day</strong></div>
+    <div class="card-body p-0">
+        <table class="table table-striped table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Invoice #</th>
+                    <th>Date / Time</th>
+                    <th class="text-end">Subtotal</th>
+                    <th class="text-end">Discount</th>
+                    <th class="text-end">Total</th>
+                    <th>Payment</th>
+                    <th class="text-end">Items</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var inv in Model.Invoices)
+                {
+                    <tr>
+                        <td>@inv.InvoiceNumber</td>
+                        <td>@inv.SaleDateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td class="text-end">@inv.Subtotal.ToString("N2")</td>
+                        <td class="text-end">
+                            @if (inv.DiscountPercent.HasValue && inv.DiscountPercent.Value > 0)
+                            { <text>@inv.DiscountPercent%</text> }
+                            else if (inv.DiscountAmount.HasValue && inv.DiscountAmount.Value > 0)
+                            { @inv.DiscountAmount.Value.ToString("N2") }
+                            else
+                            { <text>—</text> }
+                        </td>
+                        <td class="text-end">@inv.TotalAfterDiscount.ToString("N2")</td>
+                        <td>@(inv.PaymentMethod ?? "—")</td>
+                        <td class="text-end">@inv.ItemCount</td>
+                        <td>
+                            <a asp-controller="POS" asp-action="Invoice" asp-route-id="@inv.Id" class="btn btn-sm btn-outline-primary" target="_blank">View</a>
+                            <a asp-controller="POS" asp-action="Edit" asp-route-id="@inv.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (!Model.Invoices.Any())
+        {
+            <p class="text-muted p-3 mb-0">No invoices for this day.</p>
+        }
+    </div>
+</div>
+
+<a asp-action="Daily" class="btn btn-secondary mt-3">Back</a>
