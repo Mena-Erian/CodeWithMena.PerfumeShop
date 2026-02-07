@@ -11,8 +11,8 @@
 <div class="row">
     <div class="col-md-8">
         <div class="card mb-3">
-            @* <div class="card-header">Add Perfume Item</div>
-             <div class="card-body">
+ <div class="card-header">Add Perfume Item</div>
+             <div class="card-body visually-hidden">
                 <div class="row g-2 mb-2">
                     <div class="col-md-5 position-relative">
                         <label class="form-label">Perfume (type to search)</label>
@@ -47,15 +47,16 @@
                     <button type="button" id="btnGetPrice" class="btn btn-outline-secondary">Get Price</button>
                     <button type="button" id="btnAdd" class="btn btn-primary">Add to Cart</button>
                 </div>
-            </div> *@
+            </div> 
         </div>
         <div class="card mb-3">
             <div class="card-header">Add Custom Item (name + price + count)</div>
             <div class="card-body">
                 <div class="row g-2">
-                    <div class="col-md-4">
+                    <div class="col-md-4 position-relative">
                         <label class="form-label">Item Name</label>
-                        <input type="text" id="manualName" class="form-control" placeholder="e.g. Gift wrap" />
+                        <input type="text" id="manualName" class="form-control" placeholder="e.g. Gift wrap (type to see previous items)" autocomplete="off" />
+                        <div id="manualNameDropdown" class="list-group shadow border" style="display:none; max-height: 180px; overflow-y: auto; z-index: 1000; position: absolute; left: 0; right: 0; top: 100%;"></div>
                     </div>
                     <div class="col-md-2">
                         <label class="form-label">Unit Price (EGP)</label>
@@ -156,6 +157,26 @@
     const manualPrice = document.getElementById('manualPrice');
     const manualQty = document.getElementById('manualQty');
     const btnAddManual = document.getElementById('btnAddManual');
+    const manualNameDropdown = document.getElementById('manualNameDropdown');
+
+    const MANUAL_NAMES_KEY = 'posManualItemNames';
+    const MANUAL_NAMES_MAX = 100;
+    function getSavedManualNames() {
+        try {
+            const raw = localStorage.getItem(MANUAL_NAMES_KEY);
+            return raw ? JSON.parse(raw) : [];
+        } catch (e) { return []; }
+    }
+    function saveManualName(name) {
+        if (!name || name.length < 2) return;
+        let list = getSavedManualNames();
+        const n = name.trim();
+        list = list.filter(function(x) { return x.toLowerCase() !== n.toLowerCase(); });
+        list.unshift(n);
+        list = list.slice(0, MANUAL_NAMES_MAX);
+        try { localStorage.setItem(MANUAL_NAMES_KEY, JSON.stringify(list)); } catch (e) {}
+    }
+    var savedManualNames = getSavedManualNames();
 
     function getToken() { return document.getElementById('requestVerificationToken').value; }
 
@@ -217,7 +238,27 @@
     document.addEventListener('click', function(e) {
         if (!perfumeSearch.contains(e.target) && !perfumeDropdown.contains(e.target))
             perfumeDropdown.style.display = 'none';
+        if (manualNameDropdown && !manualName.contains(e.target) && !manualNameDropdown.contains(e.target))
+            manualNameDropdown.style.display = 'none';
     });
+
+    function showManualNameSuggestions() {
+        const q = (manualName.value || '').trim().toLowerCase();
+        const list = savedManualNames.filter(function(n) { return n.toLowerCase().includes(q); });
+        manualNameDropdown.innerHTML = list.slice(0, 15).map(function(n) {
+            return '<a href="#" class="list-group-item list-group-item-action manual-name-option">' + n.replace(/</g, '&lt;').replace(/"/g, '&quot;') + '</a>';
+        }).join('');
+        manualNameDropdown.style.display = list.length ? 'block' : 'none';
+        manualNameDropdown.querySelectorAll('.manual-name-option').forEach(function(a) {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                manualName.value = this.textContent;
+                manualNameDropdown.style.display = 'none';
+            });
+        });
+    }
+    manualName.addEventListener('focus', showManualNameSuggestions);
+    manualName.addEventListener('input', showManualNameSuggestions);
 
     btnGetPrice.addEventListener('click', async function() {
         const bid = (bottleSelect.value || '').trim();
@@ -287,6 +328,8 @@
         const qty = parseInt(manualQty.value) || 1;
         if (!name) { alert('Enter item name'); return; }
         if (price < 0) { alert('Price must be >= 0'); return; }
+        saveManualName(name);
+        savedManualNames = getSavedManualNames();
         cart.push({
             perfumeOilId: null,
             bottleId: null,
@@ -305,6 +348,7 @@
         manualName.value = '';
         manualPrice.value = '';
         manualQty.value = '1';
+        if (manualNameDropdown) manualNameDropdown.style.display = 'none';
     });
 
     discountPercent.addEventListener('input', updateTotals);
